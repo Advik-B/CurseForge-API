@@ -1,6 +1,6 @@
 from requests import get
 from dataclasses import dataclass
-from classes import CurseGame, CurseGameAssets, CurseGameList
+from classes import CurseGame, CurseGameAssets
 
 BASE_URL = "https://api.curseforge.com"
 
@@ -32,9 +32,8 @@ class CurseClient:
             date_modified=_game["date_modified"],
         )
 
-    def games(self):
-        return CurseGameList(
-            games=[
+    def games(self) -> list[CurseGame]:
+        return [
                 CurseGame(
                     id=game["id"],
                     name=game["name"],
@@ -47,4 +46,3 @@ class CurseClient:
                 )
                 for game in self.fetch("games")
             ]
-        )
