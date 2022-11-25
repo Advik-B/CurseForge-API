@@ -1,10 +1,12 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class GameAssets:
     icon_url: str
     tile_url: str
     cover_url: str
+
 
 @dataclass
 class Game:
@@ -39,6 +41,7 @@ class ModAuthor:
     name: str
     url: str
 
+
 @dataclass
 class ModLinks:
     website_url: str
@@ -55,6 +58,26 @@ class Image:
     description: str
     thumbnail_url: str
     url: str
+
+
+# ModLogo and ScreenShot are a subclass of Image because they share the same attributes
+class ModLogo(Image): pass
+class ScreenShot(Image): pass
+@dataclass
+class Hash:
+    value: str
+    algo: int
+@dataclass
+class ModFile:
+    id: int
+    game_id: int
+    mod_id: int
+    isAvailable: bool
+    display_name: str
+    file_name: str
+    release_type: int
+    file_status: int
+
 
 @dataclass
 class Mod: pass
