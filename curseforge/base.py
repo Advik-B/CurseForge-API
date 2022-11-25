@@ -18,7 +18,7 @@ class CurseClient:
             }
         ).json()["data"]
 
-    def fetch_game(self, game_id: int):
+    def game(self, game_id: int):
         _game = self.fetch(f"games/{game_id}")
         return CurseGame(
             id=_game["id"],
