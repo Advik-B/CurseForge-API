@@ -1,5 +1,6 @@
 from requests import get
 from dataclasses import dataclass
+from typing import Generator
 from classes import CurseGame, CurseGameAssets
 
 BASE_URL = "https://api.curseforge.com"
@@ -48,3 +49,17 @@ class CurseClient:
                 )
                 for game in self.fetch("games")
         )
+
+    def games_iter(self) -> Generator[CurseGame, ...]:
+        """Returns a generator of CurseGame objects"""
+        for game in self.fetch("games"):
+            yield CurseGame(
+                id=game["id"],
+                name=game["name"],
+                slug=game["slug"],
+                url=game["url"],
+                assets=CurseGameAssets(*game["assets"]),
+                status=game["status"],
+                api_status=game["api_status"],
+                date_modified=game["date_modified"],
+            )
