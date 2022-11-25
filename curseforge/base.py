@@ -8,7 +8,7 @@ BASE_URL = "https://api.curseforge.com"
 class CurseClient:
     api_key: str
 
-    def get(self, url: str):
+    def fetch(self, url: str):
         return get(
             BASE_URL + url,
             headers={
