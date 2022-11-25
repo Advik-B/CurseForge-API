@@ -9,7 +9,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 with codecs.open(os.path.join(here, "requirements.txt"), encoding="utf-8") as fh:
     requirements = fh.read().splitlines()
-VERSION = '0.0.1'
+VERSION = '0.0.3'
 DESCRIPTION = "A no-compromises wrapper for the CurseForge API"
 
 # Setting up
@@ -30,4 +30,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    url="https://github.com/Advik-B/curseforge-api",
 )
