@@ -16,7 +16,3 @@ class CurseGame:
     status: int
     api_status: int
     date_modified: str
-
-@dataclass
-class CurseGameList:
-    games: list[CurseGame]
