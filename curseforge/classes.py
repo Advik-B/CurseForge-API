@@ -31,3 +31,30 @@ class Category:
     class_id: int
     parentCategory_id: int
     displayIndex: int
+
+
+@dataclass
+class ModAuthor:
+    id: int
+    name: str
+    url: str
+
+@dataclass
+class ModLinks:
+    website_url: str
+    wiki_url: str
+    issue_tracker_url: str
+    source_code_url: str
+
+
+@dataclass
+class Image:
+    id: int
+    modId: int
+    title: str
+    description: str
+    thumbnail_url: str
+    url: str
+
+@dataclass
+class Mod: pass
