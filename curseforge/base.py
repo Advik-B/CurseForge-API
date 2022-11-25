@@ -1,6 +1,6 @@
 from requests import get
 from dataclasses import dataclass
-from curseclasses import CurseGame, CurseGameAssets
+from classes import CurseGame, CurseGameAssets
 
 BASE_URL = "https://api.curseforge.com"
 
