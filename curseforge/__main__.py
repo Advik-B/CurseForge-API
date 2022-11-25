@@ -1,0 +1,3 @@
+from base64 import b64decode
+
+API_KEY = b64decode("JDJhJDEwJFhkNkhYT3dweFI1UTIvWGpyZjBkUC5hSDFaRDE5T3pRZC9mVnVNLk94QXJJL01DTlZtNHZh")
