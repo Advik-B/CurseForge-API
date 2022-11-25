@@ -15,4 +15,4 @@ class CurseClient:
                 "X-API-Key": self.api_key,
                 "Accept": "application/json"
             }
-        )
+        ).json().get("data")
