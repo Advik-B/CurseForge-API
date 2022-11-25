@@ -7,10 +7,9 @@ API_KEY: str = b64decode("JDJhJDEwJFhkNkhYT3dweFI1UTIvWGpyZjBkUC5hSDFaRDE5T3pRZC
 client = CurseClient(API_KEY)
 
 games = client.fetch("games")
-minecraft = next(game for game in games if game["name"] == "Minecraft")
-pprint(minecraft)
+
 with open("minecraft.json", "w") as f:
-    dump(minecraft, f, indent=4)
+    dump(games, f, indent=4)
 
 # for game in games:
 #     pprint(game["name"]+" : "+str(game["id"]))
