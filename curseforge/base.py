@@ -1,5 +1,6 @@
 from requests import get
 from dataclasses import dataclass
+from curseclasses import CurseGame
 
 BASE_URL = "https://api.curseforge.com"
 
@@ -32,15 +33,4 @@ class CurseClient:
         )
 
 
-
-@dataclass
-class CurseGame:
-    id: int
-    name: str
-    slug: str
-    url: str
-    assets: dict
-    status: int
-    api_status: int
-    date_modified: str
 
