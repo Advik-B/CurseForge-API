@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 BASE_URL = "https://api.curseforge.com"
 
+
 @dataclass()
 class CurseClient:
     api_key: str
