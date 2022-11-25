@@ -3,10 +3,15 @@ from dataclasses import dataclass
 
 BASE_URL = "https://api.curseforge.com"
 
-@dataclass
+@dataclass()
 class CurseClient:
-    def __init__(self, api_key: str):
-        self.api_key = api_key
+    api_key: str
 
     def get(self, url: str):
-        return get(BASE_URL + url, headers={"X-API-Key": self.api_key, "Accept": "application/json"})
+        return get(
+            BASE_URL + url,
+            headers={
+                "X-API-Key": self.api_key,
+                "Accept": "application/json"
+            }
+        )
