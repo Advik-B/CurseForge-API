@@ -51,7 +51,7 @@ class CurseClient:
         )
 
     def games_iter(self) -> Generator[CurseGame, ...]:
-        """Returns a generator of CurseGame objects"""
+        """Returns a generator of CurseGame objects to iterate over live"""
         for game in self.fetch("games"):
             yield CurseGame(
                 id=game["id"],
