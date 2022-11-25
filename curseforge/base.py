@@ -4,7 +4,7 @@ from dataclasses import dataclass
 BASE_URL = "https://api.curseforge.com"
 
 
-@dataclass()
+@dataclass
 class CurseClient:
     api_key: str
     version: str = "v1"
@@ -17,3 +17,16 @@ class CurseClient:
                 "Accept": "application/json"
             }
         ).json().get("data")
+
+
+@dataclass
+class CurseGame:
+    id: int
+    name: str
+    slug: str
+    url: str
+    assets: dict
+    status: int
+    api_status: int
+    date_modified: str
+
