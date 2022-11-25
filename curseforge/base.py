@@ -32,8 +32,10 @@ class CurseClient:
             date_modified=_game["date_modified"],
         )
 
-    def games(self) -> list[CurseGame]:
-        return [
+    def games(self) -> tuple[CurseGame]:
+        """Returns a tuple of CurseGame objects"""
+        # We are using a tuple here because we don't want to allow the user to modify the list
+        return tuple(
                 CurseGame(
                     id=game["id"],
                     name=game["name"],
@@ -45,4 +47,4 @@ class CurseClient:
                     date_modified=game["date_modified"],
                 )
                 for game in self.fetch("games")
-            ]
+        )
