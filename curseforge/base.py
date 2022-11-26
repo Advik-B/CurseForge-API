@@ -94,3 +94,8 @@ class CurseClient:
                 parentCategory_id=category.get("parentCategoryId"),
                 displayIndex=category.get("displayIndex"),
             )
+
+    def export_cache(self, file: str):
+        for key in self.cache_obj:
+            export_json_to_file(self.cache_obj.get(key), file)
+    
