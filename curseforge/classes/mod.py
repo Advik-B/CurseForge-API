@@ -1,14 +1,15 @@
 from dataclasses import dataclass
 from .image import Image
+from .base import CurseObject
 
 @dataclass
-class ModAuthor:
+class ModAuthor(CurseObject):
     id: int
     name: str
     url: str
 
 @dataclass
-class ModLinks:
+class ModLinks(CurseObject):
     website_url: str
     wiki_url: str
     issue_tracker_url: str
@@ -19,7 +20,7 @@ class ModLogo(Image): pass
 class ScreenShot(Image): pass
 
 @dataclass
-class ModFile:
+class ModFile(CurseObject):
     id: int
     game_id: int
     mod_id: int

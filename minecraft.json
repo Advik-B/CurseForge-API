@@ -1,0 +1,353 @@
+[
+    {
+        "id": 78135,
+        "name": "Demeo",
+        "slug": "demeo",
+        "dateModified": "2022-11-23T15:34:02.313Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/468/250/637751406649699690.png",
+            "tileUrl": "https://cfcore-assets.forgecdn.net/game-tiles/eaf07d14-8695-4f69-bd0c-78af44f94b4c.png",
+            "coverUrl": "https://cfcore-assets.forgecdn.net/game-covers/71ad59c6-0dfa-46dd-9985-daa07d82b82b.png"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 454,
+        "name": "WildStar",
+        "slug": "wildstar",
+        "dateModified": "2022-11-23T12:35:07.12Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/2/496/635301584801074213.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/WildStar+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/454_a66a9b93-561f-48de-ac37-c98efb833811.webp"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 70667,
+        "name": "Chronicles of Arcadia",
+        "slug": "chronicles-of-arcadia",
+        "dateModified": "2022-11-23T13:03:23.28Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/558/478/637906599755328722.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/arcadia.jpg",
+            "coverUrl": "https://cfcore-assets.forgecdn.net/game-covers/3bd075a0-bd0e-4b38-ad1e-73a7b5d21453.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 5026,
+        "name": "Final Fantasy III",
+        "slug": "final-fantasy-iii",
+        "dateModified": "2022-11-06T20:39:04.99Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-box-art/5026_3912d352-bdf6-496a-bbee-a07d2377771b.png",
+            "coverUrl": null
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 727,
+        "name": "Sid Meier's Civilization VI",
+        "slug": "civ6",
+        "dateModified": "2022-11-23T13:03:53.247Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/367/269/637533929092496300.jpeg",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/civilization-6.png",
+            "coverUrl": "https://media.forgecdn.net/game-covers/civilization-6.png"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 432,
+        "name": "Minecraft",
+        "slug": "minecraft",
+        "dateModified": "2022-06-24T19:42:10.42Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/2/494/635300874663985333.png",
+            "tileUrl": "https://static-cdn.jtvnw.net/ttv-boxart/Minecraft-285x380.jpg",
+            "coverUrl": "https://cfcore-assets.forgecdn.net/game-covers/457c8141-8d81-4d13-aaa9-b5655011fb69.png"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 4455,
+        "name": "Secret World Legends",
+        "slug": "swlegends",
+        "dateModified": "2022-11-23T15:43:07.69Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/127/351/636437768563134686.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/Secret+World+Legends+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/Secret+World+Legends+Cover.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 431,
+        "name": "Terraria",
+        "slug": "terraria",
+        "dateModified": "2022-11-23T12:35:24.597Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/65/488/636162973579653614.png",
+            "tileUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd1d6F8NswgRELpoAUGCP5RuPK8QiJ9_FRuFCMCrZeSfSb74sxee3-jNArcIcKeLh4OuE&usqp=CAU",
+            "coverUrl": "https://steamlists.com/wp-content/uploads/2021/04/terraria-all-progression-pre-boss-0-steamlists-com-6658-678x381.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 455,
+        "name": "The Elder Scrolls Online",
+        "slug": "teso",
+        "dateModified": "2022-11-23T13:08:14.567Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/77/188/636173283407439352.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/The+Elder+Scrolls+Online+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/Elder+Scroll+Online+cover.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 608,
+        "name": "Darkest Dungeon",
+        "slug": "darkestdungeon",
+        "dateModified": "2022-11-23T13:04:16.197Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/128/670/636449775181416885.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/Darkest+Dungeon+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/Darkest+Dungeon+Cover.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 5230,
+        "name": "Final Fantasy I",
+        "slug": "final-fantasy-i",
+        "dateModified": "2022-11-06T20:41:56.607Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-box-art/5230_eb60e5f3-b539-4f2b-b76b-21ba5df40519.png",
+            "coverUrl": null
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 64,
+        "name": "The Secret World",
+        "slug": "tsw",
+        "dateModified": "2022-11-23T13:08:35.303Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/77/426/636174165380388887.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/tsw.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/64_f1e0afa1-fb84-4b30-be7b-668e6fd37894.webp"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 335,
+        "name": "Runes of Magic",
+        "slug": "rom",
+        "dateModified": "2022-11-23T13:06:35.603Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/76/698/636173120361240569.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/Runes+of+Magic+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/335_e874b347-b50a-4ab7-b2e3-194ad3fcc1ee.webp"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 4773,
+        "name": "Final Fantasy VI",
+        "slug": "final-fantasy-vi",
+        "dateModified": "2022-11-23T15:35:52.75Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-box-art/4773_0069c4c2-18b0-4885-a439-25adb81b9a82.png",
+            "coverUrl": null
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 69761,
+        "name": "Among Us",
+        "slug": "among-us",
+        "dateModified": "2022-11-23T15:33:06.627Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/333/169/637465561645522770.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/among-us.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/among-us.png"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 78062,
+        "name": "The Sims 4",
+        "slug": "sims4",
+        "dateModified": "2022-11-23T15:43:26.237Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-tiles/Sims+4+Tile.png",
+            "coverUrl": "https://media.contentapi.ea.com/content/dam/eacom/SIMS/brand-refresh-assets/images/2019/07/ts4-featured-image-base-refresh.png.adapt.crop191x100.1200w.png"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 5021,
+        "name": "Final Fantasy V",
+        "slug": "final-fantasy-v",
+        "dateModified": "2022-11-06T20:35:12.237Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-box-art/5021_e7882608-f934-457d-8b8f-1b584a9df1c0.png",
+            "coverUrl": null
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 4401,
+        "name": "Kerbal Space Program",
+        "slug": "kerbal",
+        "dateModified": "2022-11-23T13:05:25.627Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/6/251/635353706870328972.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/Kerbal+Space+Program+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/4401_6b5f85c4-700b-44d5-9166-6e4ecd2f5519.webp"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 423,
+        "name": "World of Tanks",
+        "slug": "worldoftanks",
+        "dateModified": "2022-11-23T13:08:50.077Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/77/677/636174916166063366.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/World+of+Tanks+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/World+of+tanks+cover.jfif"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 1,
+        "name": "World of Warcraft",
+        "slug": "wow",
+        "dateModified": "2021-10-07T12:48:09.573Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/63/986/636148993918069601.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/World+of+Warcraft+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/World+of+Warcraft+cover.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 4741,
+        "name": "Final Fantasy IV",
+        "slug": "final-fantasy-iv",
+        "dateModified": "2022-11-06T20:36:30.077Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-box-art/4741_b22d5fcb-ee2f-445a-8f1e-958be5a3889c.png",
+            "coverUrl": null
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 669,
+        "name": "Stardew Valley",
+        "slug": "stardewvalley",
+        "dateModified": "2022-11-23T13:07:26.81Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/144/99/636553639128471675.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/Stardew+Valley+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/Stardew+Vally+Cover.png"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 69271,
+        "name": "Minecraft Dungeons",
+        "slug": "minecraft-dungeons",
+        "dateModified": "2022-11-23T13:05:56.487Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-tiles/minecraft-dungeons.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/minecraft-dungeons.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 65,
+        "name": "StarCraft II",
+        "slug": "sc2",
+        "dateModified": "2022-11-23T13:07:09.42Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/81/999/636178357201121743.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/StarCraft+II+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/starcraft+2+cover.jpg"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 61489,
+        "name": "Surviving Mars",
+        "slug": "surviving-mars",
+        "dateModified": "2022-11-23T13:07:39.68Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-tiles/Surviving+Mars+Tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/61489_459983de-6ae6-43f7-89ca-67ca2d17abdb.webp"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 424,
+        "name": "Rift",
+        "slug": "rift",
+        "dateModified": "2022-11-23T13:06:13.333Z",
+        "assets": {
+            "iconUrl": "https://media.forgecdn.net/avatars/76/334/636172286054332976.png",
+            "tileUrl": "https://media.forgecdn.net/game-tiles/rift_tile.jpg",
+            "coverUrl": "https://media.forgecdn.net/game-covers/424_affece31-28e7-4127-a2cf-0f02c8fe2e61.webp"
+        },
+        "status": 6,
+        "apiStatus": 2
+    },
+    {
+        "id": 5001,
+        "name": "Final Fantasy II",
+        "slug": "final-fantasy-ii",
+        "dateModified": "2022-11-06T20:40:35.933Z",
+        "assets": {
+            "iconUrl": null,
+            "tileUrl": "https://media.forgecdn.net/game-box-art/5001_2e6573c1-186c-4259-9d1b-ead9dad7d381.png",
+            "coverUrl": null
+        },
+        "status": 6,
+        "apiStatus": 2
+    }
+]

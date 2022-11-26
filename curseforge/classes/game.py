@@ -1,13 +1,14 @@
 from dataclasses import dataclass
+from .base import CurseObject
 
 @dataclass
-class GameAssets:
+class GameAssets(CurseObject):
     icon_url: str
     tile_url: str
     cover_url: str
 
 @dataclass
-class Game:
+class Game(CurseObject):
     id: int
     name: str
     slug: str

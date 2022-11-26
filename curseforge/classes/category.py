@@ -1,7 +1,8 @@
 from dataclasses import dataclass
+from .base import CurseObject
 
 @dataclass
-class Category:
+class Category(CurseObject):
     id: int
     game_id: int
     name: str

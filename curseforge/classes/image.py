@@ -1,7 +1,8 @@
 from dataclasses import dataclass
+from .base import CurseObject
 
 @dataclass
-class Image:
+class Image(CurseObject):
     id: int
     modId: int
     title: str
