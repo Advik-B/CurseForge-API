@@ -39,9 +39,11 @@ class Dependency(CurseObject):
     mod_id: int
     relation_type: int
 
+
 class Module(CurseObject):
     name: str
     fingerprint: int
+
 
 class FileIndex(CurseObject):
     game_version: str
@@ -50,6 +52,7 @@ class FileIndex(CurseObject):
     release_type: int
     game_version_type_id: int
     mod_loader: int
+
 
 @dataclass
 class ModFile(CurseObject):
@@ -76,9 +79,6 @@ class ModFile(CurseObject):
     server_pack_file_id: int
     file_finger_print: str
     modules: tuple[Module]
-
-
-
 
 
 @dataclass
@@ -108,4 +108,3 @@ class Mod(CurseObject):
     game_popularity_rank: int
     is_available: bool
     thumbs_up_count: int
-
