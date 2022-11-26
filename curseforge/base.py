@@ -3,6 +3,8 @@ from dataclasses import dataclass
 from typing import Generator
 from .classes import Game, GameAssets, Category
 from .json_export import export_json, export_json_to_file
+
+from json import loads
 import diskcache
 
 BASE_URL = "http://api.curseforge.com"
@@ -45,7 +47,24 @@ class CurseClient:
                 )
 
     def fetch(self, url: str, params: dict = None, method: str = "GET"):
-        return self.fetch_raw(url, params, method).json()["data"]
+        print(f"Fetching {url}")
+        if params is None:
+            params = {}
+
+        if self.cache:
+            temp = self.cache_obj.get(url)
+        if self.cache and temp is not None:
+            return temp
+        else:
+            response = self.fetch_raw(url, params, method)
+            if response.status_code == 200:
+                data = response.json()
+                if self.cache:
+                    self.cache_obj.set(url, data)
+                return data
+            else:
+                raise Exception(f"Error: {response.status_code} {response.reason}")
+
 
     def game(self, game_id: int) -> Game:
         if self.cache:
