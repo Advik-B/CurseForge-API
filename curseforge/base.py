@@ -61,14 +61,11 @@ class CurseClient:
     def games(self) -> Generator[Game, Game, ...]:
         """Returns a generator of CurseGame objects to iterate over live"""
         for game in self.fetch("games"):
-            if self.cache:
-                self.cache_obj.set(f"game_{game.get('id')}", game)
-
+            self.cache_obj.set(f"game_{game.get('id')}", game)
             yield Game(
                 id=game.get("id"),
                 name=game.get("name"),
                 slug=game.get("slug"),
-                url=game.get("url"),
                 assets=GameAssets(*game.get("assets")),
                 status=game.get("status"),
                 api_status=game.get("api_status"),
