@@ -41,11 +41,10 @@ class CurseClient:
             id=_game.get("id"),
             name=_game.get("name"),
             slug=_game.get("slug"),
-            url=_game.get("url"),
             assets=GameAssets(*_game.get("assets")),
             status=_game.get("status"),
             api_status=_game.get("api_status"),
-            date_modified=_game.get("date_modified"),
+            date_modified=_game.get("dateModified"),
         )
 
     def games(self) -> Generator[Game, Game, ...]:
