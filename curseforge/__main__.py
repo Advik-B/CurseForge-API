@@ -1,12 +1,16 @@
 from base64 import b64decode
 from .base import CurseClient
-from json import dump
+from .classes import Game
 from pprint import pprint
 API_KEY: str = b64decode("JDJhJDEwJFhkNkhYT3dweFI1UTIvWGpyZjBkUC5hSDFaRDE5T3pRZC9mVnVNLk94QXJJL01DTlZtNHZh").decode("utf-8")
 
 client = CurseClient(API_KEY, cache=False)
 
-# minecraft = client.game(432)
+minecraft: Game
 
 for game in client.games():
-    pprint(game)
+    if game.name == "Minecraft":
+        minecraft = game
+        break
+
+pprint(minecraft)
