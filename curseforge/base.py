@@ -25,6 +25,7 @@ class CurseClient:
 
         method = method.casefold()
         if method == "get":
+            print(f"GET {BASE_URL}/{self.version}/{url}")
             return get(
                 f"{BASE_URL}/{self.version}/{url}",
                 headers={
@@ -98,4 +99,6 @@ class CurseClient:
     def export_cache(self, file: str):
         for key in self.cache_obj:
             export_json_to_file(self.cache_obj.get(key), file)
-    
+
+    def clean_cache(self):
+        self.cache_obj.clear()
