@@ -39,11 +39,11 @@ class CurseClient:
         _game = self.fetch(f"games/{game_id}")
         return Game(
             id=_game.get("id"),
-            name=_game["name"],
-            slug=_game["slug"],
+            name=_game.get("name"),
+            slug=_game.get("slug"),
             url=_game.get("url"),
             assets=GameAssets(*_game.get("assets")),
-            status=_game["status"],
+            status=_game.get("status"),
             api_status=_game.get("api_status"),
             date_modified=_game.get("date_modified"),
         )
@@ -52,14 +52,14 @@ class CurseClient:
         """Returns a generator of CurseGame objects to iterate over live"""
         for game in self.fetch("games"):
             yield Game(
-                id=game["id"],
-                name=game["name"],
-                slug=game["slug"],
-                url=game["url"],
-                assets=GameAssets(*game["assets"]),
-                status=game["status"],
-                api_status=game["api_status"],
-                date_modified=game["date_modified"],
+                id=game.get("id"),
+                name=game.get("name"),
+                slug=game.get("slug"),
+                url=game.get("url"),
+                assets=GameAssets(*game.get("assets")),
+                status=game.get("status"),
+                api_status=game.get("api_status"),
+                date_modified=game.get("date_modified"),
             )
 
     def game_versions(self, game_id: int):
