@@ -2,6 +2,7 @@ from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
 from .classes import Game, GameAssets, Category
+from .json_export import export_json, export_json_file
 import diskcache
 
 BASE_URL = "http://api.curseforge.com"
