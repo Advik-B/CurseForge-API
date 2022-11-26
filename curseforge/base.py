@@ -48,7 +48,8 @@ class CurseClient:
         return self.fetch_raw(url, params, method).json()["data"]
 
     def game(self, game_id: int) -> Game:
-        temp = self.cache_obj.get(f"game_{game_id}")
+        if self.cache:
+            temp = self.cache_obj.get(f"game_{game_id}")
         if self.cache and temp is not None:
             _game = temp
         else:
