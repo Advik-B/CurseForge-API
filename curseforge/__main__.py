@@ -12,3 +12,5 @@ with open("minecraft.json", "w") as f:
     dump(games, f, indent=4)
 
 minecraft = client.game(432)
+
+print(minecraft)
