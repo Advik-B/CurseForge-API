@@ -11,5 +11,4 @@ games = client.fetch("games")
 with open("minecraft.json", "w") as f:
     dump(games, f, indent=4)
 
-# for game in games:
-#     pprint(game["name"]+" : "+str(game["id"]))
+minecraft = client.game(432)
