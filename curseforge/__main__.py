@@ -8,4 +8,5 @@ client = CurseClient(API_KEY, cache=False)
 
 # minecraft = client.game(432)
 
-pprint(client.fetch("game/432"))
+for game in client.games():
+    pprint(game)
