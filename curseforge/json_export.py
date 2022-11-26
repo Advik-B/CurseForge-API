@@ -1,7 +1,6 @@
 from json import dump, load
 
 from .classes import *
-from .base import CurseClient
 import codecs
 
 
