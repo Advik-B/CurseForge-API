@@ -6,11 +6,6 @@ API_KEY: str = b64decode("JDJhJDEwJFhkNkhYT3dweFI1UTIvWGpyZjBkUC5hSDFaRDE5T3pRZC
 
 client = CurseClient(API_KEY, cache=True)
 
-games = client.fetch("games")
+# minecraft = client.game(432)
 
-with open("minecraft.json", "w") as f:
-    dump(games, f, indent=4)
-
-minecraft = client.game(432)
-
-print(minecraft)
+pprint(client.fetch("game/432"))
