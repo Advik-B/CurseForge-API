@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Generator
 from .classes import Game, GameAssets, Category
 
-BASE_URL = "https://api.curseforge.com"
+BASE_URL = "http://api.curseforge.com"
 
 
 @dataclass
@@ -48,7 +48,7 @@ class CurseClient:
             date_modified=_game["date_modified"],
         )
 
-    def games(self) -> Generator[Game, ...]:
+    def games(self) -> Generator[Game, Game, ...]:
         """Returns a generator of CurseGame objects to iterate over live"""
         for game in self.fetch("games"):
             yield Game(
@@ -65,7 +65,7 @@ class CurseClient:
     def game_versions(self, game_id: int):
         return self.fetch(f"game/{game_id}/versions")
 
-    def categories(self, game_id: int) -> Generator[Category, ...]:
+    def categories(self, game_id: int) -> Generator[Category, Category, ...]:
         for category in self.fetch("categories", {"gameId": game_id}):
             yield Category(
                 id=category["id"],
