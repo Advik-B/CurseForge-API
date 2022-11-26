@@ -19,7 +19,7 @@ class CurseClient:
         if self.cache:
             self.cache_obj = diskcache.Cache(self.cache_dir)
 
-    def fetch(self, url: str, params: dict = None, method: str = "GET"):
+    def fetch_raw(self, url: str, params: dict = None, method: str = "GET"):
         if params is None:
             params = {}
 
@@ -33,7 +33,7 @@ class CurseClient:
                     "Accept": "application/json"
                 },
                 params=params
-            ).json()["data"]
+            )
         elif method == "post":
                 return post(
                     f"{BASE_URL}/{self.version}/{url}",
@@ -42,7 +42,10 @@ class CurseClient:
                         "Accept": "application/json"
                     },
                     params=params
-                ).json()["data"]
+                )
+
+        def fetch(self, url: str, params: dict = None, method: str = "GET"):
+            return self.fetch_raw(url, params, method).json()["data"]
 
     def game(self, game_id: int) -> Game:
         temp = self.cache_obj.get(f"game_{game_id}")
