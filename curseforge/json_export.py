@@ -9,7 +9,7 @@ def export_json(curse_obj: CurseObject) -> dict:
     for key, value in curse_obj.__dict__.items():
         if isinstance(value, CurseObject):
             json[key] = export_json(value)
-        elif isinstance(value, list):
+        elif isinstance(value, list) or isinstance(value, tuple):
             json[key] = []
             for item in value:
                 if isinstance(item, CurseObject):
