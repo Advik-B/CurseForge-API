@@ -35,17 +35,17 @@ class CurseClient:
                     params=params
                 ).json()["data"]
 
-    def game(self, game_id: int):
+    def game(self, game_id: int) -> Game:
         _game = self.fetch(f"games/{game_id}")
         return Game(
             id=_game["id"],
             name=_game["name"],
             slug=_game["slug"],
-            url=_game["url"],
+            url=_game.get("url"),
             assets=GameAssets(*_game["assets"]),
             status=_game["status"],
-            api_status=_game["api_status"],
-            date_modified=_game["date_modified"],
+            api_status=_game.get("api_status"),
+            date_modified=_game("date_modified"),
         )
 
     def games(self) -> Generator[Game, Game, ...]:
