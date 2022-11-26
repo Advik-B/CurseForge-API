@@ -43,10 +43,12 @@ class CurseClient:
                 ).json()["data"]
 
     def game(self, game_id: int) -> Game:
-        if self.cache and self.cache_obj.get(f"game_{game_id}") is not None:
-            _game = self.cache_obj.get(f"game_{game_id}")
+        temp = self.cache_obj.get(f"game_{game_id}")
+        if self.cache and temp is not None:
+            _game = temp
         else:
             _game = self.fetch(f"game/{game_id}")
+            del temp
 
         return Game(
             id=_game.get("id"),
