@@ -1,7 +1,7 @@
 from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
-from classes import Game, GameAssets, Category
+from .classes import Game, GameAssets, Category
 
 BASE_URL = "https://api.curseforge.com"
 
