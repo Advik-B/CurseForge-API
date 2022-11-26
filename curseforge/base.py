@@ -1,4 +1,4 @@
-from requests import get
+from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
 from classes import Game, GameAssets, Category
@@ -11,15 +11,29 @@ class CurseClient:
     api_key: str
     version: str = "v1"
 
-    def fetch(self, url: str, params: dict = None):
-        return get(
-            f"{BASE_URL}/{self.version}/{url}",
-            headers={
-                "X-API-Key": self.api_key,
-                "Accept": "application/json"
-            },
-            params=params
-        ).json()["data"]
+    def fetch(self, url: str, params: dict = None, method: str = "GET"):
+        if params is None:
+            params = {}
+
+        method = method.casefold()
+        if method == "get":
+            return get(
+                f"{BASE_URL}/{self.version}/{url}",
+                headers={
+                    "X-API-Key": self.api_key,
+                    "Accept": "application/json"
+                },
+                params=params
+            ).json()["data"]
+        elif method == "post":
+                return post(
+                    f"{BASE_URL}/{self.version}/{url}",
+                    headers={
+                        "X-API-Key": self.api_key,
+                        "Accept": "application/json"
+                    },
+                    params=params
+                ).json()["data"]
 
     def game(self, game_id: int):
         _game = self.fetch(f"games/{game_id}")
