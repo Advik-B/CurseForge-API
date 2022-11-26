@@ -10,6 +10,7 @@ BASE_URL = "http://api.curseforge.com"
 class CurseClient:
     api_key: str
     version: str = "v1"
+    cache: bool = False
 
     def fetch(self, url: str, params: dict = None, method: str = "GET"):
         if params is None:
