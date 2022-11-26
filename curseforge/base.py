@@ -68,15 +68,15 @@ class CurseClient:
     def categories(self, game_id: int) -> Generator[Category, Category, ...]:
         for category in self.fetch("categories", {"gameId": game_id}):
             yield Category(
-                id=category["id"],
-                game_id=category["gameId"],
-                name=category["name"],
-                slug=category["slug"],
-                url=category["url"],
-                icon_url=category["iconUrl"],
-                date_modified=category["dateModified"],
-                is_Class=category["isClass"],
-                class_id=category["classId"],
-                parentCategory_id=category["parentCategoryId"],
-                displayIndex=category["displayIndex"],
+                id=category.get("id"),
+                game_id=category.get("gameId"),
+                name=category.get("name"),
+                slug=category.get("slug"),
+                url=category.get("url"),
+                icon_url=category.get("iconUrl"),
+                date_modified=category.get("dateModified"),
+                is_Class=category.get("isClass"),
+                class_id=category.get("classId"),
+                parentCategory_id=category.get("parentCategoryId"),
+                displayIndex=category.get("displayIndex"),
             )
