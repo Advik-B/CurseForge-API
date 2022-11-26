@@ -43,7 +43,7 @@ class CurseClient:
             slug=_game.get("slug"),
             assets=GameAssets(*_game.get("assets")),
             status=_game.get("status"),
-            api_status=_game.get("api_status"),
+            api_status=_game.get("apiStatus"),
             date_modified=_game.get("dateModified"),
         )
 
