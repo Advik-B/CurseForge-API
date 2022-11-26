@@ -12,7 +12,6 @@ class Game(CurseObject):
     id: int
     name: str
     slug: str
-    url: str
     assets: GameAssets
     status: int
     api_status: int
