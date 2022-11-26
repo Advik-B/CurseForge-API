@@ -38,14 +38,14 @@ class CurseClient:
     def game(self, game_id: int) -> Game:
         _game = self.fetch(f"games/{game_id}")
         return Game(
-            id=_game["id"],
+            id=_game.get("id"),
             name=_game["name"],
             slug=_game["slug"],
             url=_game.get("url"),
-            assets=GameAssets(*_game["assets"]),
+            assets=GameAssets(*_game.get("assets")),
             status=_game["status"],
             api_status=_game.get("api_status"),
-            date_modified=_game("date_modified"),
+            date_modified=_game.get("date_modified"),
         )
 
     def games(self) -> Generator[Game, Game, ...]:
