@@ -44,8 +44,8 @@ class CurseClient:
                     params=params
                 )
 
-        def fetch(self, url: str, params: dict = None, method: str = "GET"):
-            return self.fetch_raw(url, params, method).json()["data"]
+    def fetch(self, url: str, params: dict = None, method: str = "GET"):
+        return self.fetch_raw(url, params, method).json()["data"]
 
     def game(self, game_id: int) -> Game:
         temp = self.cache_obj.get(f"game_{game_id}")
