@@ -3,7 +3,7 @@ from .image import Image
 from .base import CurseObject
 from .category import Category
 from .hashe import Hash
-
+from ..json_export import export_json, export_json_to_file
 
 @dataclass
 class ModAuthor(CurseObject):
@@ -108,3 +108,9 @@ class Mod(CurseObject):
     game_popularity_rank: int
     is_available: bool
     thumbs_up_count: int
+
+    def export_json(self, file: str = None):
+        if file is None:
+            return export_json(self)
+        else:
+            export_json_to_file(self, file)
