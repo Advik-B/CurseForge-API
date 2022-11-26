@@ -8,9 +8,11 @@ client = CurseClient(API_KEY, cache=False)
 
 minecraft: Game
 
-for game in client.games():
-    if game.name == "Minecraft":
-        minecraft = game
-        break
+ID_minecraft: int = 432
 
-pprint(minecraft)
+minecraft = client.game(ID_minecraft)
+
+# for game in client.games():
+#     if game.name == "Minecraft":
+#         minecraft = game
+#         break
