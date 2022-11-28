@@ -26,7 +26,6 @@ class CurseClient:
 
         method = method.casefold()
         if method == "get":
-            print(f"GET {BASE_URL}/{self.version}/{url}")
             return get(
                 f"{BASE_URL}/{self.version}/{url}",
                 headers={
@@ -46,7 +45,6 @@ class CurseClient:
                 )
 
     def fetch(self, url: str, params: dict = None, method: str = "GET") -> dict:
-        print(f"Fetching {url}")
         if params is None:
             params = {}
 
@@ -76,7 +74,6 @@ class CurseClient:
 
         else:
             game_ = self.fetch(f"games/{game_id}")
-            print(game_)
             return Game.from_dict(game_)
 
     def games(self) -> Generator[Game, Game, ...]:
