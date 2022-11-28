@@ -3,7 +3,7 @@ from .image import Image
 from .base import CurseObject
 from .category import Category
 from .hashe import Hash
-from ..json_export import export_json, export_json_to_file
+
 
 @dataclass
 class ModAuthor(CurseObject):
