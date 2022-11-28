@@ -13,3 +13,4 @@ ID_minecraft: int = 432
 
 minecraft = client.game(ID_minecraft)
 print(minecraft)
+
