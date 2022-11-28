@@ -46,7 +46,7 @@ class CurseClient:
                     params=params
                 )
 
-    def fetch(self, url: str, params: dict = None, method: str = "GET"):
+    def fetch(self, url: str, params: dict = None, method: str = "GET") -> dict:
         print(f"Fetching {url}")
         if params is None:
             params = {}
@@ -55,15 +55,12 @@ class CurseClient:
             temp = self.cache_obj.get(url)
         if self.cache and temp is not None:
             return temp
-        else:
-            response = self.fetch_raw(url, params, method)
-            if response.status_code == 200:
-                data = response.json()
-                if self.cache:
-                    self.cache_obj.set(url, data)
-                return data
-            else:
-                raise Exception(f"Error: {response.status_code} {response.reason}")
+        response = self.fetch_raw(url, params, method)
+        if response.status_code == 200:
+            data = response.json()
+            if self.cache:
+                self.cache_obj.set(url, data)
+            return data
 
 
     def game(self, game_id: int) -> Game:
@@ -71,15 +68,21 @@ class CurseClient:
             temp = self.cache_obj.get(f"game_{game_id}")
         if self.cache and temp is not None:
             _game = temp
-        else:
-            _game = self.fetch(f"game/{game_id}")
             del temp
+        else:
+
+            print(f"FETCH: game/{game_id}")
+            _game = self.fetch(f"games/{game_id}")
+            if self.cache:
+                self.cache_obj.set(f"game_{game_id}", _game)
+            print(f"FETCHED: {_game}")
 
         return Game(
             id=_game.get("id"),
             name=_game.get("name"),
             slug=_game.get("slug"),
-            assets=GameAssets(*_game.get("assets")),
+            # assets=GameAssets(*_game.get("assets")),
+            assets=GameAssets("A", "B", "C"),
             status=_game.get("status"),
             api_status=_game.get("apiStatus"),
             date_modified=_game.get("dateModified"),
