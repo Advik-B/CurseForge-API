@@ -1,8 +1,5 @@
 from json import dumps
 
-from .classes import *
-
-
 def export_json(curse_obj: object) -> dict:
     """
     This function should not be used directly. Use export_dict
