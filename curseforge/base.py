@@ -2,7 +2,6 @@ from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
 from .classes import Game, GameAssets, Category
-from .classes.json_export import export_json, export_dict
 
 import diskcache
 
@@ -114,3 +113,4 @@ class CurseClient:
     def clean_cache(self):
         if self.cache:
             self.cache_obj.clear()
+            self.cache_obj.close()
