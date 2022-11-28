@@ -108,9 +108,3 @@ class Mod(CurseObject):
     game_popularity_rank: int
     is_available: bool
     thumbs_up_count: int
-
-    def export_json(self, file: str = None):
-        if file is None:
-            return export_json(self)
-        else:
-            export_json_to_file(self, file)
