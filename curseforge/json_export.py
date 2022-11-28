@@ -1,10 +1,12 @@
-from json import dump, load
+from json import dumps
 
 from .classes import *
-import codecs
 
 
-def export_json(curse_obj: CurseObject) -> dict:
+def export_json(curse_obj: object) -> dict:
+    """
+    This function should not be used directly. Use export_dict
+    """
     json = {}
     for key, value in curse_obj.__dict__.items():
         if isinstance(value, CurseObject):
@@ -21,6 +23,8 @@ def export_json(curse_obj: CurseObject) -> dict:
     return json
 
 
-def export_json_to_file(curse_obj: CurseObject, file: str):
-    with codecs.open(file, "w", "utf-8") as f:
-        dump(export_json(curse_obj), f, indent=4, ensure_ascii=False)
+def export_json(curse_obj: object) -> str:
+    """
+    This function should not be used directly. Use export_json_to_file
+    """
+    return dumps(export_json(curse_obj))
