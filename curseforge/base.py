@@ -53,39 +53,31 @@ class CurseClient:
         if self.cache:
             temp = self.cache_obj.get(url)
         if self.cache and temp is not None:
-            return temp
+            return temp["data"]
+
         response = self.fetch_raw(url, params, method)
         if response.status_code == 200:
             data = response.json()
             if self.cache:
                 self.cache_obj.set(url, data)
-            return data
+            return data["data"]
 
 
     def game(self, game_id: int) -> Game:
         if self.cache:
             temp = self.cache_obj.get(f"game_{game_id}")
-        if self.cache and temp is not None:
-            _game = temp
-            del temp
-        else:
-
-            print(f"FETCH: game/{game_id}")
-            _game = self.fetch(f"games/{game_id}")
-            if self.cache:
+            if temp is not None:
+                _game = temp
+                del temp
+            else:
+                _game = self.fetch(f"games/{game_id}")
                 self.cache_obj.set(f"game_{game_id}", _game)
-            print(f"FETCHED: {_game}")
+            return Game.from_dict(_game)
 
-        return Game(
-            id=_game.get("id"),
-            name=_game.get("name"),
-            slug=_game.get("slug"),
-            # assets=GameAssets(*_game.get("assets")),
-            assets=GameAssets("A", "B", "C"),
-            status=_game.get("status"),
-            api_status=_game.get("apiStatus"),
-            date_modified=_game.get("dateModified"),
-        )
+        else:
+            game_ = self.fetch(f"games/{game_id}")
+            print(game_)
+            return Game.from_dict(game_)
 
     def games(self) -> Generator[Game, Game, ...]:
         """Returns a generator of CurseGame objects to iterate over live"""
