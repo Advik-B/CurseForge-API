@@ -2,7 +2,7 @@ from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
 from .classes import Game, GameAssets, Category
-from curseforge.classes.json_export import export_json_to_file
+from .classes.json_export import export_json, export_dict
 
 import diskcache
 
@@ -122,9 +122,6 @@ class CurseClient:
                 displayIndex=category.get("displayIndex"),
             )
 
-    def export_cache(self, file: str):
-        for key in self.cache_obj:
-            export_json_to_file(self.cache_obj.get(key), file)
-
     def clean_cache(self):
-        self.cache_obj.clear()
+        if self.cache:
+            self.cache_obj.clear()
