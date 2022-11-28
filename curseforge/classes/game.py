@@ -23,7 +23,7 @@ class Game(CurseObject):
             id=data.get("id"),
             name=data.get("name"),
             slug=data.get("slug"),
-            assets=GameAssets('a', 'b', 'c'),
+            assets=GameAssets(*data.get("assets").values()),
             status=data.get("status"),
             api_status=data.get("apiStatus"),
             date_modified=data.get("dateModified"),
