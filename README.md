@@ -50,10 +50,10 @@ for file in JourneyMap.files:
 ```
 
 ## TODO
-- [ X ] Implement the export methods
-- [ X ] Implement the cache
-- [  ] Implement the fetch method
-- [  ] Deal with the download URL being a null value
+- [x] Implement the export methods
+- [x] Implement the cache
+- [ ] Implement the fetch method
+- [ ] Deal with the download URL being a null value
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
