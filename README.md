@@ -12,6 +12,12 @@ It also speeds up the process by using disk caching, It will cache the response 
 
 This, of course can be disabled by setting the cache to False.
 
+## Features
+- Simple and easy to use
+- Caches responses from the API to disk for faster response times
+- Allows direct access to the API via the `fetch` method
+- Allows exporting of the objects to DICT, JSON, or YAML
+
 ## Installation
 
 ```bash
@@ -42,3 +48,11 @@ JourneyMap = client.mod(2238) # 2238 is the ID of JourneyMap
 for file in JourneyMap.files:
     print(file.name)
 ```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
