@@ -2,6 +2,6 @@ from dataclasses import dataclass
 from .base import CurseObject
 
 @dataclass
-class Hash(CurseObject):
+class CurseHash(CurseObject):
     value: str
     algo: int
