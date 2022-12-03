@@ -161,7 +161,9 @@ class CurseMod(CurseObject):
                 hashes=tuple(CurseHash(
                     hash=file.get("hashes").get("hash"),
                     type=file.get("hashes").get("type")
-                ) for file in data.get("latestFiles")),
+                    for file in data.get("latestFiles")
+                ),
+
                 file_date=file.get("fileDate"),
                 file_length=file.get("fileLength"),
                 download_count=file.get("downloadCount"),
