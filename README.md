@@ -56,7 +56,7 @@ for file in JourneyMap.files:
 - [ ] Deal with the download URL being a null value
 - [ ] Implement the search method
 - [ ] Wrap the ENTIRE API
-- [ ] Rename the classes so they have a `Curse` prefix
+- [x] Rename the classes so they have a `Curse` prefix
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
