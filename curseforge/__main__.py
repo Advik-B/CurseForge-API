@@ -12,7 +12,5 @@ client = CurseClient(API_KEY, cache=True)
 
 ID_minecraft: int = 432
 minecraft: CurseGame = client.game(ID_minecraft)
-pprint(minecraft)
-pprint(export_dict(minecraft))
 
 # client.clean_cache()
