@@ -1,7 +1,7 @@
 from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
-from .classes import CurseGame, CurseGameAssets, CurseCategory
+from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod
 
 import diskcache
 
@@ -109,6 +109,21 @@ class CurseClient:
                 parentCategory_id=category.get("parentCategoryId"),
                 displayIndex=category.get("displayIndex"),
             )
+
+    def addon(self, addon_id: int) -> CurseMod:
+        if self.cache:
+            temp = self.cache_obj.get(f"addon_{addon_id}")
+            if temp is not None:
+                _addon = temp
+                del temp
+            else:
+                _addon = self.fetch(f"addon/{addon_id}")
+                self.cache_obj.set(f"addon_{addon_id}", _addon)
+            return CurseMod.from_dict(_addon)
+
+        else:
+            addon_ = self.fetch(f"addon/{addon_id}")
+            return CurseMod.from_dict(addon_)
 
     def clean_cache(self):
         if self.cache:
