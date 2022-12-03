@@ -1,7 +1,7 @@
 from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
-from .classes import Game, GameAssets, Category
+from .classes import CurseGame, CurseGameAssets, CurseCategory
 
 import diskcache
 
@@ -60,7 +60,7 @@ class CurseClient:
             return data["data"]
 
 
-    def game(self, game_id: int) -> Game:
+    def game(self, game_id: int) -> CurseGame:
         if self.cache:
             temp = self.cache_obj.get(f"game_{game_id}")
             if temp is not None:
@@ -69,22 +69,22 @@ class CurseClient:
             else:
                 _game = self.fetch(f"games/{game_id}")
                 self.cache_obj.set(f"game_{game_id}", _game)
-            return Game.from_dict(_game)
+            return CurseGame.from_dict(_game)
 
         else:
             game_ = self.fetch(f"games/{game_id}")
-            return Game.from_dict(game_)
+            return CurseGame.from_dict(game_)
 
-    def games(self) -> Generator[Game, Game, ...]:
+    def games(self) -> Generator[CurseGame, CurseGame, ...]:
         """Returns a generator of CurseGame objects to iterate over live"""
         for game in self.fetch("games"):
             if self.cache:
                 self.cache_obj.set(f"game_{game.get('id')}", game)
-            yield Game(
+            yield CurseGame(
                 id=game.get("id"),
                 name=game.get("name"),
                 slug=game.get("slug"),
-                assets=GameAssets(*game.get("assets")),
+                assets=CurseGameAssets(*game.get("assets")),
                 status=game.get("status"),
                 api_status=game.get("api_status"),
                 date_modified=game.get("date_modified"),
@@ -93,10 +93,10 @@ class CurseClient:
     def game_versions(self, game_id: int):
         return self.fetch(f"game/{game_id}/versions")
 
-    def categories(self, game_id: int) -> Generator[Category, Category, ...]:
+    def categories(self, game_id: int) -> Generator[CurseCategory, CurseCategory, ...]:
         for category in self.fetch("categories", {"gameId": game_id}):
             self.cache_obj.set(f"category_{category.get('id')}", category)
-            yield Category(
+            yield CurseCategory(
                 id=category.get("id"),
                 game_id=category.get("gameId"),
                 name=category.get("name"),
