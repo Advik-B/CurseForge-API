@@ -108,3 +108,10 @@ class CurseMod(CurseObject):
     game_popularity_rank: int
     is_available: bool
     thumbs_up_count: int
+
+    @staticmethod
+    def from_dict(data: dict):
+        """
+        Returns a CurseMod instance from a dict
+        """
+        pass
