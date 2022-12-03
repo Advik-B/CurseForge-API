@@ -1,33 +1,33 @@
 from dataclasses import dataclass
-from .image import Image
+from .curseimage import CurseImage
 from .base import CurseObject
-from .category import Category
-from .hashe import Hash
+from .cursecategory import CurseCategory
+from .hashe import CurseHash
 
 
 @dataclass
-class ModAuthor(CurseObject):
+class CurseModAuthor(CurseObject):
     id: int
     name: str
     url: str
 
 
 @dataclass
-class ModLinks(CurseObject):
+class CurseModLinks(CurseObject):
     website_url: str
     wiki_url: str
     issue_tracker_url: str
     source_code_url: str
 
 
-# ModLogo and ScreenShot are a subclass of Image because they share the same attributes
-class ModLogo(Image): pass
+# CurseModLogo and CurseScreenShot are a subclass of CurseImage because they share the same attributes
+class CurseModLogo(CurseImage): pass
 
 
-class ScreenShot(Image): pass
+class CurseScreenShot(CurseImage): pass
 
 
-class SortableGameVersion(CurseObject):
+class CurseSortableGameVersion(CurseObject):
     game_version_name: str
     game_version_padded: str
     game_version: str
@@ -35,17 +35,17 @@ class SortableGameVersion(CurseObject):
     game_version_type_id: int
 
 
-class Dependency(CurseObject):
+class CurseDependency(CurseObject):
     mod_id: int
     relation_type: int
 
 
-class Module(CurseObject):
+class CurseModule(CurseObject):
     name: str
     fingerprint: int
 
 
-class FileIndex(CurseObject):
+class CurseFileIndex(CurseObject):
     game_version: str
     file_id: int
     file_name: str
@@ -55,7 +55,7 @@ class FileIndex(CurseObject):
 
 
 @dataclass
-class ModFile(CurseObject):
+class CurseModFile(CurseObject):
     id: int
     game_id: int
     mod_id: int
@@ -64,43 +64,43 @@ class ModFile(CurseObject):
     file_name: str
     release_type: int
     file_status: int
-    hashes: tuple[Hash]
+    hashes: tuple[CurseHash]
     file_date: str
     file_length: int
     download_count: int
     download_url: str
     game_versions: tuple[str]
-    sortable_game_version: tuple[SortableGameVersion]
-    dependencies: tuple[Dependency]
+    sortable_game_version: tuple[CurseSortableGameVersion]
+    dependencies: tuple[CurseDependency]
     expose_as_alternate: bool
     parent_project_file_id: int
     altername_file_id: int
     is_server_pack: bool
     server_pack_file_id: int
     file_finger_print: str
-    modules: tuple[Module]
+    modules: tuple[CurseModule]
 
 
 @dataclass
-class Mod(CurseObject):
+class CurseMod(CurseObject):
     id: int
     game_id: int
     name: str
     slug: str
-    links: ModLinks
+    links: CurseModLinks
     summary: str
     status: int
     download_count: int
     is_featured: bool
     primary_category_id: int
-    categories: tuple[Category]
+    categories: tuple[CurseCategory]
     class_id: int
-    authors: tuple[ModAuthor]
-    logo: ModLogo
-    screenshots: tuple[ScreenShot]
+    authors: tuple[CurseModAuthor]
+    logo: CurseModLogo
+    screenshots: tuple[CurseScreenShot]
     mainFile_id: int
-    latestFiles: tuple[ModFile]
-    latestFilesIndexes: tuple[FileIndex]
+    latestFiles: tuple[CurseModFile]
+    latestFilesIndexes: tuple[CurseFileIndex]
     data_created: str
     data_modified: str
     data_released: str
