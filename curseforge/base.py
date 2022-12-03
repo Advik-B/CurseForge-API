@@ -96,19 +96,7 @@ class CurseClient:
     def categories(self, game_id: int) -> Generator[CurseCategory, CurseCategory, ...]:
         for category in self.fetch("categories", {"gameId": game_id}):
             self.cache_obj.set(f"category_{category.get('id')}", category)
-            yield CurseCategory(
-                id=category.get("id"),
-                game_id=category.get("gameId"),
-                name=category.get("name"),
-                slug=category.get("slug"),
-                url=category.get("url"),
-                icon_url=category.get("iconUrl"),
-                date_modified=category.get("dateModified"),
-                is_Class=category.get("isClass"),
-                class_id=category.get("classId"),
-                parentCategory_id=category.get("parentCategoryId"),
-                displayIndex=category.get("displayIndex"),
-            )
+            yield CurseCategory.from_dict(category)
 
     def addon(self, addon_id: int) -> CurseMod:
         if self.cache:
