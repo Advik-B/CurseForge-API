@@ -13,7 +13,7 @@ class CurseClient:
     api_key: str
     version: str = "v1"
     cache: bool = False
-    cache_dir: str = "cache"
+    cache_dir: str = "CurseCache"
 
     def __post_init__(self):
         if self.cache:
