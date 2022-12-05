@@ -5,3 +5,10 @@ from .base import CurseObject
 class CurseHash(CurseObject):
     value: str
     algo: int
+
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseHash(
+            value=data.get("value"),
+            algo=data.get("algo")
+        )
