@@ -6,7 +6,7 @@ from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod, CurseM
 import diskcache
 
 BASE_URL = "http://api.curseforge.com"
-
+MOD_BASE_URL = "https://edge.forgecdn.net/files/%(file_id_1)s/%(file_id_2)s/%(file_name)s"
 
 @dataclass
 class CurseClient:
@@ -123,4 +123,13 @@ class CurseClient:
             yield CurseModFile.from_dict(file)
 
     def get_mod_file(self, addon_id: int, file_id: int):
-        return CurseModFile.from_dict(self.fetch(f"addon/{addon_id}/files/{file_id}"))
+        _mod = CurseModFile.from_dict(self.fetch(f"addon/{addon_id}/files/{file_id}"))
+        if _mod.download_url is None:
+            # Guess the download url
+            file_id = str(file_id)[1:] if str(file_id).startswith("0") else str(file_id)
+            file_id_1 = file_id[1:3]
+            file_id_2 = file_id[3:5]
+            _mod.download_url = MOD_BASE_URL % {"file_id_1": file_id_1, "file_id_2": file_id_2, "file_name": _mod.file_name}
+        return _mod
+    
+
