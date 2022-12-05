@@ -61,19 +61,7 @@ class CurseClient:
 
 
     def game(self, game_id: int) -> CurseGame:
-        if self.cache:
-            temp = self.cache_obj.get(f"game_{game_id}")
-            if temp is not None:
-                _game = temp
-                del temp
-            else:
-                _game = self.fetch(f"games/{game_id}")
-                self.cache_obj.set(f"game_{game_id}", _game)
-            return CurseGame.from_dict(_game)
-
-        else:
-            game_ = self.fetch(f"games/{game_id}")
-            return CurseGame.from_dict(game_)
+        return CurseGame.from_dict(self.fetch(f"game/{game_id}"))
 
     def games(self) -> Generator[CurseGame, CurseGame, ...]:
         """Returns a generator of CurseGame objects to iterate over live"""
@@ -99,19 +87,7 @@ class CurseClient:
             yield CurseCategory.from_dict(category)
 
     def addon(self, addon_id: int) -> CurseMod:
-        if self.cache:
-            temp = self.cache_obj.get(f"addon_{addon_id}")
-            if temp is not None:
-                _addon = temp
-                del temp
-            else:
-                _addon = self.fetch(f"addon/{addon_id}")
-                self.cache_obj.set(f"addon_{addon_id}", _addon)
-            return CurseMod.from_dict(_addon)
-
-        else:
-            addon_ = self.fetch(f"addon/{addon_id}")
-            return CurseMod.from_dict(addon_)
+        return CurseMod.from_dict(self.fetch(f"addon/{addon_id}"))
 
     def clean_cache(self):
         if self.cache:
@@ -123,7 +99,7 @@ class CurseClient:
             yield CurseModFile.from_dict(file)
 
     def get_mod_file(self, addon_id: int, file_id: int):
-        _mod = CurseModFile.from_dict(self.fetch(f"addon/{addon_id}/files/{file_id}"))
+        _mod = CurseModFile.from_dict(self.fetch(f"mods/{addon_id}/files/{file_id}"))
         if _mod.download_url is None:
             # Guess the download url
             file_id = str(file_id)[1:] if str(file_id).startswith("0") else str(file_id)
@@ -131,5 +107,5 @@ class CurseClient:
             file_id_2 = file_id[3:5]
             _mod.download_url = MOD_BASE_URL % {"file_id_1": file_id_1, "file_id_2": file_id_2, "file_name": _mod.file_name}
         return _mod
-    
+
 
