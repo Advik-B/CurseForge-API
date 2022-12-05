@@ -21,12 +21,13 @@ class CurseModLinks(CurseObject):
 
 
 # CurseModLogo and CurseScreenShot are a subclass of CurseImage because they share the same attributes
+@dataclass
 class CurseModLogo(CurseImage): pass
 
-
+@dataclass
 class CurseScreenShot(CurseImage): pass
 
-
+@dataclass
 class CurseSortableGameVersion(CurseObject):
     game_version_name: str
     game_version_padded: str
@@ -34,16 +35,17 @@ class CurseSortableGameVersion(CurseObject):
     game_version_release_date: str
     game_version_type_id: int
 
+    @staticmethod
     def from_dict(data: dict):
         return CurseSortableGameVersion(
-            game_version_name=data.get("game_version_name"),
-            game_version_padded=data.get("game_version_padded"),
-            game_version=data.get("game_version"),
-            game_version_release_date=data.get("game_version_release_date"),
-            game_version_type_id=data.get("game_version_type_id")
+            game_version_name=data.get("gameVersionName"),
+            game_version_padded=data.get("gameVersionPadded"),
+            game_version=data.get("gameVersion"),
+            game_version_release_date=data.get("gameVersionReleaseDate"),
+            game_version_type_id=data.get("gameVersionTypeId")
         )
 
-
+@dataclass
 class CurseDependency(CurseObject):
     mod_id: int
     relation_type: int
@@ -56,7 +58,7 @@ class CurseDependency(CurseObject):
         )
 
 
-
+@dataclass
 class CurseModule(CurseObject):
     name: str
     fingerprint: int
@@ -68,7 +70,7 @@ class CurseModule(CurseObject):
             fingerprint=data.get("fingerprint")
         )
 
-
+@dataclass
 class CurseFileIndex(CurseObject):
     game_version: str
     file_id: int
@@ -120,8 +122,8 @@ class CurseModFile(CurseObject):
             file_length=data.get("fileLength"),
             download_count=data.get("downloadCount"),
             download_url=data.get("downloadUrl"),
-            game_versions=tuple(data.get("gameVersion")),
-            sortable_game_version=tuple(CurseSortableGameVersion.from_dict(version) for version in data.get("sortableGameVersion")),
+            game_versions=tuple(data.get("gameVersions")),
+            sortable_game_version=tuple(CurseSortableGameVersion.from_dict(version) for version in data.get("sortableGameVersions")),
             dependencies=tuple(CurseDependency.from_dict(dependency) for dependency in data.get("dependencies")),
             expose_as_alternate=data.get("exposeAsAlternate"),
             parent_project_file_id=data.get("parentProjectFileId"),
