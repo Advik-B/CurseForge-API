@@ -34,15 +34,39 @@ class CurseSortableGameVersion(CurseObject):
     game_version_release_date: str
     game_version_type_id: int
 
+    def from_dict(data: dict):
+        return CurseSortableGameVersion(
+            game_version_name=data.get("game_version_name"),
+            game_version_padded=data.get("game_version_padded"),
+            game_version=data.get("game_version"),
+            game_version_release_date=data.get("game_version_release_date"),
+            game_version_type_id=data.get("game_version_type_id")
+        )
+
 
 class CurseDependency(CurseObject):
     mod_id: int
     relation_type: int
 
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseDependency(
+            mod_id=data.get("mod_id"),
+            relation_type=data.get("relation_type")
+        )
+
+
 
 class CurseModule(CurseObject):
     name: str
     fingerprint: int
+
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseModule(
+            name=data.get("name"),
+            fingerprint=data.get("fingerprint")
+        )
 
 
 class CurseFileIndex(CurseObject):
@@ -79,6 +103,34 @@ class CurseModFile(CurseObject):
     server_pack_file_id: int
     file_finger_print: str
     modules: tuple[CurseModule]
+
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseModFile(
+            id=data.get("id"),
+            game_id=data.get("gameId"),
+            mod_id=data.get("modId"),
+            isAvailable=data.get("isAvailable"),
+            display_name=data.get("displayName"),
+            file_name=data.get("fileName"),
+            release_type=data.get("releaseType"),
+            file_status=data.get("fileStatus"),
+            hashes=tuple(CurseHash.from_dict(hash_) for hash_ in data.get("hashes")), # type: ignore
+            file_date=data.get("fileDate"),
+            file_length=data.get("fileLength"),
+            download_count=data.get("downloadCount"),
+            download_url=data.get("downloadUrl"),
+            game_versions=tuple(data.get("gameVersion")),
+            sortable_game_version=tuple(CurseSortableGameVersion.from_dict(version) for version in data.get("sortableGameVersion")),
+            dependencies=tuple(CurseDependency.from_dict(dependency) for dependency in data.get("dependencies")),
+            expose_as_alternate=data.get("exposeAsAlternate"),
+            parent_project_file_id=data.get("parentProjectFileId"),
+            altername_file_id=data.get("alternameFileId"),
+            is_server_pack=data.get("isServerPack"),
+            server_pack_file_id=data.get("serverPackFileId"),
+            file_finger_print=data.get("fileFingerPrint"),
+            modules=tuple(CurseModule.from_dict(module_) for module_ in data.get("modules")),
+        )
 
 
 @dataclass
