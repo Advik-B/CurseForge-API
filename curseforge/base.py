@@ -1,7 +1,7 @@
 from requests import get, post
 from dataclasses import dataclass
 from typing import Generator
-from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod
+from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod, CurseModFile
 
 import diskcache
 
@@ -117,3 +117,7 @@ class CurseClient:
         if self.cache:
             self.cache_obj.clear()
             self.cache_obj.close()
+
+    def get_mod_files(self, addon_id: int):
+        for file in self.fetch(f"addon/{addon_id}/files"):
+            yield CurseModFile.from_dict(file)
