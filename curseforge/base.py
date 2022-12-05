@@ -121,3 +121,7 @@ class CurseClient:
     def get_mod_files(self, addon_id: int):
         for file in self.fetch(f"addon/{addon_id}/files"):
             yield CurseModFile.from_dict(file)
+
+    def get_mod_file(self, addon_id: int, file_id: int):
+        return CurseModFile.from_dict(self.fetch(f"addon/{addon_id}/file/{file_id}"))
+    
