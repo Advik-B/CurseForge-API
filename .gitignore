@@ -2,3 +2,5 @@ build/
 *.DS_Store
 *__pycache__/
 cache/
+*curseforge.egg-info/
+*dist/
