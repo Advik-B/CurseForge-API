@@ -39,8 +39,12 @@ mod_file_list = [
 # file = client.get_mod_file(400012, 4083676)
 # print(file.download_url) # https://edge.forgecdn.net/files/4083/676/ExNihiloSequentia-1.18.2-20221113-044349.jar
 
+def Print(*text, end: str = "\n\r", sep: str = " ", flush: bool = False):
+    stdout.write(sep.join(text) + end)
+    if flush:
+        stdout.flush()
 
 
 for mod in mod_file_list:
     file = client.get_mod_file(mod["projectID"], mod["fileID"])
-    print(file.download_url, flush=True, end="\n\r")
+    Print(file.download_url)
