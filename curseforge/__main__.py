@@ -51,5 +51,11 @@ mod_file_list = {
 }
 
 # minecraft: CurseGame
-file = client.get_mod_file(400012, 4083676)
-print(file.download_url) # https://edge.forgecdn.net/files/4083/676/ExNihiloSequentia-1.18.2-20221113-044349.jar
+# file = client.get_mod_file(400012, 4083676)
+# print(file.download_url) # https://edge.forgecdn.net/files/4083/676/ExNihiloSequentia-1.18.2-20221113-044349.jar
+
+mods = mod_file_list["files"]
+
+for mod in mods:
+    file = client.get_mod_file(mod["projectID"], mod["fileID"])
+    print(file.download_url)
