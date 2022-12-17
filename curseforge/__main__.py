@@ -57,5 +57,5 @@ mod_file_list = {
 mods = mod_file_list["files"]
 
 for mod in mods:
-    file = client.get_mod_file(mod["projectID"], mod["fileID"], on_guess=lambda x,y : print(f"Guessing {x} {y}", end="... "))
+    file = client.get_mod_file(mod["projectID"], mod["fileID"])
     print(file.download_url, flush=True, end="\n\r")
