@@ -1,4 +1,6 @@
 from base64 import b64decode
+from dataclasses import dataclass
+
 from .base import CurseClient
 from sys import stdout
 
@@ -40,9 +42,13 @@ mod_file_list = [
 # print(file.download_url) # https://edge.forgecdn.net/files/4083/676/ExNihiloSequentia-1.18.2-20221113-044349.jar
 
 def Print(*text, end: str = "\n\r", sep: str = " ", flush: bool = False):
-    stdout.write(sep.join(text) + end)
+    for i in text:
+        stdout.write(str(i))
+        stdout.write(sep)
+    stdout.write(end)
     if flush:
         stdout.flush()
+
 
 
 for mod in mod_file_list:
