@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Generator
 from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod, CurseModFile
 
-import diskcache
+from diskcache import Cache, Lock
 
 BASE_URL = "http://api.curseforge.com"
 MOD_BASE_URL = "https://edge.forgecdn.net/files/%(file_id_1)s/%(file_id_2)s/%(file_name)s"
@@ -13,11 +13,12 @@ class CurseClient:
     api_key: str
     version: str = "v1"
     cache: bool = False
-    cache_dir: str = "cache"
+    cache_dir: str = "cache/curseforge"
 
     def __post_init__(self):
         if self.cache:
-            self.cache_obj = diskcache.Cache(self.cache_dir)
+            self.cache_obj = Cache(self.cache_dir)
+            self.file_cache = Cache(f"{self.cache_dir}/mod_files")
 
     def fetch_raw(self, url: str, params: dict = None, method: str = "GET"):
         if params is None:
