@@ -18,7 +18,6 @@ class CurseClient:
     def __post_init__(self):
         if self.cache:
             self.cache_obj = Cache(self.cache_dir)
-            self.file_cache = Cache(f"{self.cache_dir}/mod_files")
 
     def fetch_raw(self, url: str, params: dict = None, method: str = "GET"):
         if params is None:
