@@ -102,7 +102,7 @@ class CurseClient:
         _mod = CurseModFile.from_dict(self.fetch(f"mods/{addon_id}/files/{file_id}"))
         if _mod.download_url is None:
             # Guess the download url
-
+            on_guess(addon_id, file_id)
             file_id = str(file_id)[1:] if str(file_id).startswith("0") else str(file_id)
             file_id_1 = file_id[:4]
             file_id_2 = file_id[4:7]
