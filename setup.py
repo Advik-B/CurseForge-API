@@ -9,7 +9,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 with codecs.open(os.path.join(here, "requirements.txt"), encoding="utf-8") as fh:
     requirements = fh.read().splitlines()
-VERSION = '1.5.0'
+VERSION = '1.5.1'
 DESCRIPTION = "A no-compromises wrapper for the CurseForge API"
 
 # Setting up
