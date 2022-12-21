@@ -55,4 +55,6 @@ for mod in mod_file_list:
     file = client.get_mod_file(mod["projectID"], mod["fileID"])
     Print(file.download_url)
     for key in dir(file):
-        Print(f"Key: {key}", f"Value:", eval(f"file.{key}", globals(), locals()))
+        Print("="*80)
+        Print(f"Key: {key}" + " | Value:", eval(f"file.{key}", globals(), locals()))
+    Print("="*80)
