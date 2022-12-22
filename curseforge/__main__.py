@@ -54,7 +54,7 @@ def Print(*text, end: str = "\n\r", sep: str = " ", flush: bool = False):
 for mod in mod_file_list:
     file = client.get_mod_file(mod["projectID"], mod["fileID"])
     Print(file.download_url)
-    for key in dir(file):
-        Print("="*80)
-        Print(f"Key: {key}" + " | Value:", eval(f"file.{key}", globals(), locals()))
-    Print("="*80)
+    # for key in dir(file):
+    #     Print("="*80)
+    #     Print(f"Key: {key}" + " | Value:", eval(f"file.{key}", globals(), locals()))
+    # Print("="*80)
