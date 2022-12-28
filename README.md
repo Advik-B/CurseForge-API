@@ -52,8 +52,8 @@ for file in JourneyMap.files:
 ## TODO
 - [x] Implement the export methods
 - [x] Implement the cache
-- [ ] Implement the fetch method
-- [ ] Deal with the download URL being a null value
+- [x] Implement the fetch method
+- [x] Deal with the download URL being a null value
 - [ ] Implement the search method
 - [ ] Wrap the ENTIRE API
 - [x] Rename the classes so they have a `Curse` prefix
