@@ -98,7 +98,7 @@ class CurseClient:
         for file in self.fetch(f"addon/{addon_id}/files"):
             yield CurseModFile.from_dict(file)
 
-    def get_mod_file(self, addon_id: int, file_id: int, on_guess: callable=lambda addon_id, file_id: None):
+    def get_mod_file(self, addon_id: int, file_id: int, on_guess: callable=lambda addon_id, file_id: None) -> CurseModFile:
         _mod = CurseModFile.from_dict(self.fetch(f"mods/{addon_id}/files/{file_id}"))
         if _mod.download_url is None:
             # Guess the download url
