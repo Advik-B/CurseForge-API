@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Generator
 from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod, CurseModFile
 
-from diskcache import Cache, Lock
+from diskcache import Cache
 
 BASE_URL = "http://api.curseforge.com"
 MOD_BASE_URL = "https://edge.forgecdn.net/files/%(file_id_1)s/%(file_id_2)s/%(file_name)s"
