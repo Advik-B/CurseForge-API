@@ -1,12 +1,13 @@
 from requests import get, post
 from dataclasses import dataclass
-from typing import Generator
+from typing import Generator, Union
 from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod, CurseModFile
 
 from diskcache import Cache
 
 BASE_URL = "http://api.curseforge.com"
 MOD_BASE_URL = "https://edge.forgecdn.net/files/%(file_id_1)s/%(file_id_2)s/%(file_name)s"
+
 
 @dataclass
 class CurseClient:
@@ -34,14 +35,14 @@ class CurseClient:
                 params=params
             )
         elif method == "post":
-                return post(
-                    f"{BASE_URL}/{self.version}/{url}",
-                    headers={
-                        "X-API-Key": self.api_key,
-                        "Accept": "application/json"
-                    },
-                    params=params
-                )
+            return post(
+                f"{BASE_URL}/{self.version}/{url}",
+                headers={
+                    "X-API-Key": self.api_key,
+                    "Accept": "application/json"
+                },
+                params=params
+            )
 
     def fetch(self, url: str, params: dict = None, method: str = "GET") -> dict:
         if params is None:
@@ -58,7 +59,6 @@ class CurseClient:
             if self.cache:
                 self.cache_obj.set(url, data)
             return data["data"]
-
 
     def game(self, game_id: int) -> CurseGame:
         return CurseGame.from_dict(self.fetch(f"game/{game_id}"))
@@ -78,7 +78,7 @@ class CurseClient:
                 date_modified=game.get("date_modified"),
             )
 
-    def game_versions(self, game_id: int):
+    def game_versions(self, game_id: int) -> Union[dict, list]:
         return self.fetch(f"game/{game_id}/versions")
 
     def categories(self, game_id: int) -> Generator[CurseCategory, CurseCategory, ...]:
@@ -92,13 +92,13 @@ class CurseClient:
     def clean_cache(self):
         if self.cache:
             self.cache_obj.clear()
-            self.cache_obj.close()
 
     def get_mod_files(self, addon_id: int):
         for file in self.fetch(f"addon/{addon_id}/files"):
             yield CurseModFile.from_dict(file)
 
-    def get_mod_file(self, addon_id: int, file_id: int, on_guess: callable=lambda addon_id, file_id: None) -> CurseModFile:
+    def get_mod_file(self, addon_id: int, file_id: int,
+                     on_guess: callable = lambda addon_id, file_id: None) -> CurseModFile:
         _mod = CurseModFile.from_dict(self.fetch(f"mods/{addon_id}/files/{file_id}"))
         if _mod.download_url is None:
             # Guess the download url
@@ -106,7 +106,11 @@ class CurseClient:
             file_id = str(file_id)[1:] if str(file_id).startswith("0") else str(file_id)
             file_id_1 = file_id[:4]
             file_id_2 = file_id[4:7]
-            _mod.download_url = MOD_BASE_URL % {"file_id_1": file_id_1, "file_id_2": file_id_2, "file_name": _mod.file_name}
+            _mod.download_url = MOD_BASE_URL % {"file_id_1": file_id_1, "file_id_2": file_id_2,
+                                                "file_name": _mod.file_name}
         return _mod
 
+    def close_cache(self):
+        if self.cache:
+            self.cache_obj.close()
 
