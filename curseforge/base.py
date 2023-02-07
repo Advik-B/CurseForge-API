@@ -32,7 +32,8 @@ class CurseClient:
                     "X-API-Key": self.api_key,
                     "Accept": "application/json"
                 },
-                params=params
+                params=params,
+                verify=False
             )
         elif method == "post":
             return post(
@@ -41,7 +42,8 @@ class CurseClient:
                     "X-API-Key": self.api_key,
                     "Accept": "application/json"
                 },
-                params=params
+                params=params,
+                verify=False
             )
 
     def fetch(self, url: str, params: dict = None, method: str = "GET") -> dict:
