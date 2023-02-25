@@ -114,16 +114,16 @@ class CurseClient:
 
     def get_mod_file(self, addon_id: int, file_id: int,
                      on_guess: callable = lambda addon_id, file_id: None) -> CurseModFile:
-        _mod = CurseModFile.from_dict(self.fetch(f"mods/{addon_id}/files/{file_id}"))
-        if _mod.download_url is None:
+        mod = CurseModFile.from_dict(self.fetch(f"mods/{addon_id}/files/{file_id}"))
+        if mod.download_url is None:
             # Guess the download url
             on_guess(addon_id, file_id)
             file_id = str(file_id)[1:] if str(file_id).startswith("0") else str(file_id)
             file_id_1 = file_id[:4]
             file_id_2 = file_id[4:7]
-            _mod.download_url = MOD_BASE_URL % {"file_id_1": file_id_1, "file_id_2": file_id_2,
-                                                "file_name": _mod.file_name}
-        return _mod
+            mod.download_url = MOD_BASE_URL % {"file_id_1": file_id_1, "file_id_2": file_id_2,
+                                                "file_name": mod.file_name}
+        return mod
 
     def close_cache(self):
         if self.cache:
