@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from .base import CurseObject
+from .cursemod import CurseModFile, CurseMod
 
 @dataclass
-class CurseFileManifest(CurseObject):
+class CurseModFileManifest(CurseObject):
     project_id: int
     file_id: int
     required: bool
@@ -14,5 +15,5 @@ class CurseManifest(CurseObject):
     name: str
     version: str
     author: list[str]
-    files: list[CurseFileManifest]
+    files: list[CurseModFileManifest]
     overrides: str
