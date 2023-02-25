@@ -57,5 +57,5 @@ def Print(*text, end: str = "\n\r", sep: str = " ", flush: bool = False):
 
 manifest = parse_manifest_file("manifest.json")
 for mod in manifest.files:
-    file = client.get_mod_file(mod.project_id, mod.file_id)
+    file = client.manifest_to_modfile(mod)
     Print(file.download_url)
