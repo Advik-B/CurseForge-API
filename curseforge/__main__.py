@@ -6,6 +6,8 @@ from sys import stdout
 
 from .classes import CurseGame
 
+# I know that the API key is public, but it's not like it's going to be used for anything
+# I'm not going to be using this API key for anything else, so it's fine
 API_KEY: str = b64decode("JDJhJDEwJFhkNkhYT3dweFI1UTIvWGpyZjBkUC5hSDFaRDE5T3pRZC9mVnVNLk94QXJJL01DTlZtNHZh").decode(
     "utf-8")
 
