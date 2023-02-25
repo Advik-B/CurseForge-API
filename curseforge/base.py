@@ -129,11 +129,13 @@ class CurseClient:
         if self.cache:
             self.cache_obj.close()
 
-    def manifest_to_mod(self, manifest: CurseModFileManifest) -> CurseModFile:
-        return CurseModFile.from_dict(
-            self.fetch(
-                f"addon/{manifest.project_id}/files/{manifest.file_id}"
-            )
-        )
+    def manifest_to_modfile(self, manifest: CurseModFileManifest) -> CurseModFile:
+        """
+        Converts a CurseModFileManifest object to a CurseModFile object using the `get_mod_file` method
+        :param manifest: CurseModFileManifest object
+        :return: CurseModFile object
+        """
+        return self.get_mod_file(manifest.project_id, manifest.file_id)
+
 
 
