@@ -121,8 +121,11 @@ class CurseClient:
             file_id = str(file_id)[1:] if str(file_id).startswith("0") else str(file_id)
             file_id_1 = file_id[:4]
             file_id_2 = file_id[4:7]
-            mod.download_url = MOD_BASE_URL % {"file_id_1": file_id_1, "file_id_2": file_id_2,
-                                                "file_name": mod.file_name}
+            mod.download_url = MOD_BASE_URL % {
+                "file_id_1": file_id_1,
+                "file_id_2": file_id_2,
+                "file_name": mod.file_name
+            }
         return mod
 
     def close_cache(self):
