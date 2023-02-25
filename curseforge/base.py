@@ -1,7 +1,14 @@
 from requests import get, post
 from dataclasses import dataclass
 from typing import Generator, Union
-from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod, CurseModFile
+from .classes import (
+    CurseGame,
+    CurseGameAssets,
+    CurseCategory,
+    CurseMod,
+    CurseModFile,
+    CurseModFileManifest
+)
 from urllib3.exceptions import InsecureRequestWarning
 from warnings import simplefilter
 
@@ -121,4 +128,12 @@ class CurseClient:
     def close_cache(self):
         if self.cache:
             self.cache_obj.close()
+
+    def manifest_to_mod(self, manifest: CurseModFileManifest) -> CurseModFile:
+        return CurseModFile.from_dict(
+            self.fetch(
+                f"addon/{manifest.project_id}/files/{manifest.file_id}"
+            )
+        )
+
 
