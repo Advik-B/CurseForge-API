@@ -2,6 +2,8 @@ from requests import get, post
 from dataclasses import dataclass
 from typing import Generator, Union
 from .classes import CurseGame, CurseGameAssets, CurseCategory, CurseMod, CurseModFile
+from urllib3.exceptions import InsecureRequestWarning
+from warnings import simplefilter
 
 from diskcache import Cache
 
@@ -24,6 +26,7 @@ class CurseClient:
         if params is None:
             params = {}
 
+        simplefilter("ignore", InsecureRequestWarning)
         method = method.casefold()
         if method == "get":
             return get(
@@ -45,6 +48,9 @@ class CurseClient:
                 params=params,
                 verify=False
             )
+        # We are now safe to reset the filter
+        # We are resetting the filter to default because it can affect other libraries and the user's code
+        simplefilter("default", InsecureRequestWarning)
 
     def fetch(self, url: str, params: dict = None, method: str = "GET") -> dict:
         if params is None:
