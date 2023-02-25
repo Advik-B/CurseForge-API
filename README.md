@@ -1,4 +1,5 @@
 # Curseforge API
+
 [cfapi]: https://wow.curseforge.com/api
 [cfapi-docs]: https://wow.curseforge.com/api/docs
 [not-working-cfapi]: https://github.com/Owen-Cochell/cursepy
@@ -13,10 +14,13 @@ It also speeds up the process by using disk caching, It will cache the response 
 This, of course can be disabled by setting the cache to False.
 
 ## Features
+
 - Simple and easy to use
 - Caches responses from the API to disk for faster response times
 - Allows direct access to the API via the `fetch` method
 - Allows exporting of the objects to DICT, JSON, or YAML
+- Can directly parse a manifest file from a curseforge modpack
+- 
 
 ## Installation
 
@@ -50,6 +54,7 @@ for file in JourneyMap.files:
 ```
 
 ## TODO
+
 - [x] Implement the export methods
 - [x] Implement the cache
 - [x] Implement the fetch method
@@ -59,9 +64,11 @@ for file in JourneyMap.files:
 - [x] Rename the classes so they have a `Curse` prefix
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
