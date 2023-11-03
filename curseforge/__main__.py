@@ -4,8 +4,40 @@ from .base import CurseClient
 from .classes import CurseManifest
 from argparse import ArgumentParser
 from . import VERSION
-
 from .classes import CurseGame
+
+# ANSI escape (color) codes
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+MAGENTA = "\033[35m"
+CYAN = "\033[36m"
+RESET = "\033[0m"
+
+# ANSI escape (background color) codes
+BG_RED = "\033[41m"
+BG_GREEN = "\033[42m"
+BG_YELLOW = "\033[43m"
+BG_BLUE = "\033[44m"
+BG_MAGENTA = "\033[45m"
+BG_CYAN = "\033[46m"
+BG_RESET = "\033[49m"
+
+
+# ANSI escape (formatting) codes
+BOLD = "\033[1m"
+UNDERLINE = "\033[4m"
+ITALIC = "\033[3m"
+STRIKETHROUGH = "\033[9m"
+
+# ANSI escape (misc) codes
+CLEAR = "\033[2J"
+CLEAR_LINE = "\033[2K"
+RESET_CURSOR = "\033[H"
+BELL = "\a"
+
+
 
 # I know that the API key is public, but it's not like it's going to be used for anything
 # I'm not going to be using this API key for anything else, so it's fine
@@ -48,4 +80,22 @@ fetch_parser.add_argument("-p", "--params", help="The parameters to pass to the 
 fetch_parser.add_argument("-r", "--raw", action="store_true", help="Always use HTTP(s) instead of the cache")
 
 args = parser.parse_args()
-print(args)
+
+def debug(*args, **kwargs):
+    if args.debug:
+        print(*args, **kwargs)
+
+if args.debug:
+    print("Debug mode enabled")
+    debug("Arguments:", args)
+
+if args.api_key == "builtin":
+    args.api_key = API_KEY
+    debug("Using built-in API key")
+
+if args.command == "cmpdl" or args.command == "fetch":
+    client = CurseClient(args.api_key, args.cache)
+    if args.command == "cmpdl":
+        client.download_modpack(args.source, args.output, args.keep)
+    elif args.command == "fetch":
+        client.fetch(args.url, args.method, args.params, args.raw)
