@@ -61,3 +61,5 @@ manifest = parse_manifest_file("manifest.json")
 for mod in manifest.files:
     file = client.manifest_to_modfile(mod)
     Print(file.download_url)
+
+Print(client.game(432))
