@@ -12,9 +12,6 @@ INDENT = 0
 for key in cache:
     print(BOLD + GREEN + key + RESET)
 
-    if INDENT > 0:
-        strdump = dumps(cache[key], indent=INDENT)
-    else:
-        strdump = dumps(cache[key])
+    strdump = dumps(cache[key], indent=INDENT) if INDENT > 0 else dumps(cache[key])
     print(YELLOW + strdump + RESET)
     print()
