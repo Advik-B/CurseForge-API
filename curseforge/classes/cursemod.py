@@ -11,6 +11,13 @@ class CurseModAuthor(CurseObject):
     name: str
     url: str
 
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseModAuthor(
+            id=data.get("id"),
+            name=data.get("name"),
+            url=data.get("url")
+        )
 
 @dataclass
 class CurseModLinks(CurseObject):
@@ -22,7 +29,19 @@ class CurseModLinks(CurseObject):
 
 # CurseModLogo and CurseScreenShot are a subclass of CurseImage because they share the same attributes
 @dataclass
-class CurseModLogo(CurseImage): pass
+class CurseModLogo(CurseImage):
+    @staticmethod
+    def from_dict(data: dict):
+        img = CurseImage.from_dict(data)
+        return CurseModLogo(
+            id=img.id,
+            modId=img.modId,
+            title=img.title,
+            description=img.description,
+            thumbnail_url=img.thumbnail_url,
+            url=img.url,
+        )
+
 
 @dataclass
 class CurseScreenShot(CurseImage): pass
@@ -79,6 +98,16 @@ class CurseFileIndex(CurseObject):
     game_version_type_id: int
     mod_loader: int
 
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseFileIndex(
+            game_version=data.get("gameVersion"),
+            file_id=data.get("fileId"),
+            file_name=data.get("fileName"),
+            release_type=data.get("releaseType"),
+            game_version_type_id=data.get("gameVersionTypeId"),
+            mod_loader=data.get("modLoader")
+        )
 
 @dataclass
 class CurseModFile(CurseObject):
@@ -169,5 +198,38 @@ class CurseMod(CurseObject):
         Returns a CurseMod instance from a dict
         """
 
-        return
+        return CurseMod(
+            id=data.get("id"),
+            game_id=data.get("gameId"),
+            name=data.get("name"),
+            slug=data.get("slug"),
+            links=CurseModLinks(
+                website_url=data.get("websiteUrl"),
+                wiki_url=data.get("wikiUrl"),
+                issue_tracker_url=data.get("issueTrackerUrl"),
+                source_code_url=data.get("sourceCodeUrl")
+            ),
+            summary=data.get("summary"),
+            status=data.get("status"),
+            download_count=data.get("downloadCount"),
+            is_featured=data.get("isFeatured"),
+            primary_category_id=data.get("primaryCategoryId"),
+            categories=tuple(CurseCategory.from_dict(category) for category in data.get("categories")),
+            class_id=data.get("classId"),
+            authors=tuple(CurseModAuthor.from_dict(author) for author in data.get("authors")),
+            logo=CurseModLogo.from_dict(data.get("logo")),
+            screenshots=tuple(CurseScreenShot.from_dict(screenshot) for screenshot in data.get("screenshots")),
+            mainFile_id=data.get("mainFileId"),
+            latestFiles=tuple(CurseModFile.from_dict(file_) for file_ in data.get("latestFiles")),
+            latestFilesIndexes=tuple(CurseFileIndex.from_dict(file_index) for file_index in data.get("latestFilesIndexes")),
+            data_created=data.get("dateCreated"),
+            data_modified=data.get("dateModified"),
+            data_released=data.get("dateReleased"),
+            allow_mod_distribution=data.get("allowModpacks"),
+            game_popularity_rank=data.get("gamePopularityRank"),
+            is_available=data.get("isAvailable"),
+            thumbs_up_count=data.get("thumbsUpCount")
+        )
 
+
+CurseModPack = CurseMod
