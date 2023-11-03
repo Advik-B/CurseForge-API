@@ -76,7 +76,7 @@ class CurseClient:
             return data["data"]
 
     def game(self, game_id: int) -> CurseGame:
-        return CurseGame.from_dict(self.fetch(f"game/{game_id}"))
+        return CurseGame.from_dict(self.fetch(f"games/{game_id}"))
 
     def games(self) -> Generator[CurseGame, CurseGame, ...]:
         """Returns a generator of CurseGame objects to iterate over (live)"""
