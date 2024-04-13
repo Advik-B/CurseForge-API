@@ -32,4 +32,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     url="https://github.com/Advik-B/curseforge-api",
+    options={'bdist_wheel':{'universal':True}}
 )
