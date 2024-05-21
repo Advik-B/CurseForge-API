@@ -78,7 +78,7 @@ class CurseClient:
     def game(self, game_id: int) -> CurseGame:
         return CurseGame.from_dict(self.fetch(f"games/{game_id}"))
 
-    def games(self) -> Generator[CurseGame, CurseGame, ...]:
+    def games(self) -> Generator[CurseGame, CurseGame, None]:
         """Returns a generator of CurseGame objects to iterate over (live)"""
         for game in self.fetch("games"):
             if self.cache:
@@ -96,7 +96,7 @@ class CurseClient:
     def game_versions(self, game_id: int) -> Union[dict, list]:
         return self.fetch(f"game/{game_id}/versions")
 
-    def categories(self, game_id: int) -> Generator[CurseCategory, CurseCategory, ...]:
+    def categories(self, game_id: int) -> Generator[CurseCategory, CurseCategory, None]:
         for category in self.fetch("categories", {"gameId": game_id}):
             self.cache_obj.set(f"category_{category.get('id')}", category)
             yield CurseCategory.from_dict(category)

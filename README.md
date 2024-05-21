@@ -20,7 +20,6 @@ This, of course can be disabled by setting the cache to False.
 - Allows direct access to the API via the `fetch` method
 - Allows exporting of the objects to DICT, JSON, or YAML
 - Can directly parse a manifest file from a curseforge modpack
-- 
 
 ## Installation
 
