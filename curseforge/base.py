@@ -7,7 +7,8 @@ from .classes import (
     CurseCategory,
     CurseMod,
     CurseModFile,
-    CurseModFileManifest
+    CurseModFileManifest,
+    CurseModPack,
 )
 from urllib3.exceptions import InsecureRequestWarning
 from warnings import simplefilter
@@ -21,8 +22,8 @@ MOD_BASE_URL = "https://edge.forgecdn.net/files/%(file_id_1)s/%(file_id_2)s/%(fi
 @dataclass
 class CurseClient:
     api_key: str
-    version: str = "v1"
     cache: bool = False
+    version: str = "v1"
     cache_dir: str = "cache/curseforge"
 
     def __post_init__(self):
@@ -33,11 +34,13 @@ class CurseClient:
         if params is None:
             params = {}
 
+        URL = f"{BASE_URL}/{self.version}/{url}"
+        print(URL)
         simplefilter("ignore", InsecureRequestWarning)
         method = method.casefold()
         if method == "get":
             return get(
-                f"{BASE_URL}/{self.version}/{url}",
+                URL,
                 headers={
                     "X-API-Key": self.api_key,
                     "Accept": "application/json"
@@ -47,7 +50,7 @@ class CurseClient:
             )
         elif method == "post":
             return post(
-                f"{BASE_URL}/{self.version}/{url}",
+                URL,
                 headers={
                     "X-API-Key": self.api_key,
                     "Accept": "application/json"
@@ -104,6 +107,15 @@ class CurseClient:
     def addon(self, addon_id: int) -> CurseMod:
         return CurseMod.from_dict(self.fetch(f"addon/{addon_id}"))
 
+    def addon_from_slug(self, slug: str, params: dict={}) -> CurseMod:
+        # Search for the addon
+        for addon in self.fetch("mods/search", params.update({"searchFilter": slug})):
+            if addon.get("slug") == slug:
+                return CurseMod.from_dict(addon)
+
+        # If we get here, the addon doesn't exist
+        raise ValueError(f"Addon with slug {slug} does not exist")
+
     def clean_cache(self):
         if self.cache:
             self.cache_obj.clear()
@@ -139,6 +151,10 @@ class CurseClient:
         :return: CurseModFile object
         """
         return self.get_mod_file(manifest.project_id, manifest.file_id)
+
+    def modpack(self, modpack_id: int) -> dict:
+        return CurseModPack.from_dict(self.fetch(f"mods/{modpack_id}"))
+
 
 
 
