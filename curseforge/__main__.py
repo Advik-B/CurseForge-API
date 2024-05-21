@@ -5,6 +5,7 @@ from .classes import CurseManifest
 from argparse import ArgumentParser
 from . import VERSION
 from .classes import CurseGame
+from .cli import *
 
 # ANSI escape (color) codes
 RED = "\033[31m"
@@ -24,7 +25,6 @@ BG_MAGENTA = "\033[45m"
 BG_CYAN = "\033[46m"
 BG_RESET = "\033[49m"
 
-
 # ANSI escape (formatting) codes
 BOLD = "\033[1m"
 UNDERLINE = "\033[4m"
@@ -37,13 +37,10 @@ CLEAR_LINE = "\033[2K"
 RESET_CURSOR = "\033[H"
 BELL = "\a"
 
-
-
 # I know that the API key is public, but it's not like it's going to be used for anything
 # I'm not going to be using this API key for anything else, so it's fine
 API_KEY: str = b64decode("JDJhJDEwJFhkNkhYT3dweFI1UTIvWGpyZjBkUC5hSDFaRDE5T3pRZC9mVnVNLk94QXJJL01DTlZtNHZh").decode(
     "utf-8")
-
 
 parser = ArgumentParser(description="A no-compromises wrapper for the CurseForge API", prog="curseforge")
 parser.add_argument("-v", "--version", action="version", version=VERSION)
@@ -55,8 +52,8 @@ subparsers = parser.add_subparsers(dest="command")
 subparsers.required = True
 # CMPDL
 cmpdl_parser = subparsers.add_parser("cmpdl", help="Download a modpack from CurseForge")
-cmpdl_parser.add_argument("-s", "--source", required=True, help="The source of the modpack")
-cmpdl_parser.add_argument("-o", "--output", required=True, help="The output directory")
+cmpdl_parser.add_argument("source", help="The source of the modpack")
+cmpdl_parser.add_argument("output", help="The output directory", default=".")
 cmpdl_parser.add_argument("-K", "--keep", action="store_true", help="Keep the downloaded config files")
 
 # Cache Dignostics Tool
@@ -79,23 +76,28 @@ fetch_parser.add_argument("-m", "--method", help="The HTTP method to use", defau
 fetch_parser.add_argument("-p", "--params", help="The parameters to pass to the API", default={})
 fetch_parser.add_argument("-r", "--raw", action="store_true", help="Always use HTTP(s) instead of the cache")
 
-args = parser.parse_args()
+args_ = parser.parse_args()
+
+
+print(YELLOW+TITLE+RESET)
 
 def debug(*args, **kwargs):
-    if args.debug:
+    if args_.debug:
         print(*args, **kwargs)
 
-if args.debug:
-    print("Debug mode enabled")
-    debug("Arguments:", args)
+debug("Version:", VERSION)
+debug("API Key:", args_.api_key)
 
-if args.api_key == "builtin":
-    args.api_key = API_KEY
+if args_.debug:
+    debug("Debug mode enabled")
+    debug("Arguments:", args_)
+
+if args_.api_key == "builtin":
+    args_.api_key = API_KEY
     debug("Using built-in API key")
 
-if args.command == "cmpdl" or args.command == "fetch":
-    client = CurseClient(args.api_key, args.cache)
-    if args.command == "cmpdl":
-        client.download_modpack(args.source, args.output, args.keep)
-    elif args.command == "fetch":
-        client.fetch(args.url, args.method, args.params, args.raw)
+if args_.command == "cmpdl" or args_.command == "fetch":
+    client = CurseClient(args_.api_key, args_.cache)
+    if args_.command == "cmpdl":
+        program = CMPDLProgram(args_.source, args_.output, args_.keep, client, print, debug)
+        program.run()
