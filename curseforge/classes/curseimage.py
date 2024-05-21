@@ -10,3 +10,14 @@ class CurseImage(CurseObject):
     thumbnail_url: str
     url: str
 
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseImage(
+            id=data.get("id"),
+            url=data.get("url"),
+            description=data.get("description"),
+            thumbnail_url=data.get("thumbnailUrl"),
+            title=data.get("title"),
+            modId=data.get("modId")
+
+        )
