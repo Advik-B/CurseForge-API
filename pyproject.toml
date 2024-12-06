@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "curseforge"
+version = "2.0.0"
+description = "A no-compromise CurseForge API wrapper binding for python"
+authors = ["Advik <advik.b@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9.7"
+pybind11 = "^2.13.6"
+
+
+[build-system]
+requires = ["setuptools", "wheel", "pybind11"]
+build-backend = "setuptools.build_meta"
