@@ -14,5 +14,6 @@ PYBIND11_MODULE(curseforge, m) {
     py::class_<cf::CurseForgeAPI>(m, "CurseForgeAPI")
         .def(py::init<const std::string &>())
         .def("fetch", &cf::CurseForgeAPI::fetch);
-        
+    
+
 }

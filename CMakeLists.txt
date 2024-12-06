@@ -10,5 +10,5 @@ add_subdirectory(extern/curseforge)
 include_directories(${CMAKE_SOURCE_DIR}/extern/curseforge/include)
 
 pybind11_add_module(curseforge-bindings src/bindings.cpp)
-target_link_libraries(curseforge-bindings PUBLIC curseforge::static)
+target_link_libraries(curseforge-bindings PRIVATE curseforge::shared)
 install(TARGETS curseforge-bindings DESTINATION .)
