@@ -1,5 +1,13 @@
 import curseforge
+# import json
+# from curseforge import json
 
-print(dir(curseforge))
-for item in dir(curseforge):
-    print(item, ":", getattr(curseforge, item))
+def inspect(obj):
+    for item in dir(obj):
+        if type(getattr(obj, item)) == callable:
+            inspect(getattr(obj, item))
+        else:
+            print(item, ":", getattr(obj, item))
+
+
+inspect(curseforge)
