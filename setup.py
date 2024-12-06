@@ -2,7 +2,7 @@ from setuptools import setup
 from skbuild import setup as sk_setup
 from glob import glob
 from pybind11.setup_helpers import Pybind11Extension
-import subprocess
+import subprocess, os
 
 
 # This class defines how CMake will be used to build the extension
@@ -30,6 +30,13 @@ ext_modules = [
     ),
 ]
 
+# Ensure CMake can find your headers
+cmake_args = [
+    "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={}".format(os.path.join(os.path.abspath("."), "build")),
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DHEADER_PATH={}".format(os.path.abspath("extern/curseforge/include")),
+]
+
 # Use scikit-build to invoke CMake
 sk_setup(
     name="curseforge",
@@ -41,4 +48,5 @@ sk_setup(
     zip_safe=False,
     python_requires=">=3.9",
     ext_modules=ext_modules,
+    cmake_args=cmake_args,
 )

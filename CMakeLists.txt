@@ -3,6 +3,7 @@ project(curseforge-bindings LANGUAGES CXX)
 
 set(PYBIND11_FINDPYTHON ON)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(extern/pybind11)
 add_subdirectory(extern/curseforge)
