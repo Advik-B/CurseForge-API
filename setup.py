@@ -42,7 +42,7 @@ setup(
     long_description_content_type="text/markdown",
     ext_modules=[CMakeExtension("curseforge_bindings", sourcedir=os.path.dirname(__file__))],
     cmdclass={"build_ext": CMakeBuild},
-    packages=find_packages(),
+    packages="curseforge",
     package_data={"curseforge": ["py.typed"]},
     zip_safe=False,
     python_requires=">=3.7",
