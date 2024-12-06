@@ -1,4 +1,6 @@
 import curseforge
 
 print(dir(curseforge))
-print(curseforge.add(1, 2))
+for item in dir(curseforge):
+    print(curseforge.__getattribute__(item))
+# print(curseforge.add(1, 2))

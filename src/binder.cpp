@@ -7,7 +7,7 @@ namespace py = pybind11;
 
 
 PYBIND11_MODULE(curseforge, m) {
-    m.doc() = "CurseForge API Wrapper";
-    m.attr("__version__") = std::string(version) + "(" + std::string(__VERSION__) + ")";
-
+    m.doc() = "Python bindings for the CurseForge API Wrapper";
+    m.attr("__version__") = version;
+    
 }

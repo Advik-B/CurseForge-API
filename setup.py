@@ -1,6 +1,6 @@
 import os
 import subprocess
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from setuptools.command.build_ext import build_ext
 from sys import executable
 
@@ -39,8 +39,11 @@ setup(
     author_email="advik.b@gmail.com",
     description="The python binding for the no-compromise CurseForge API wrapper.",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     ext_modules=[CMakeExtension("curseforge_bindings", sourcedir=os.path.dirname(__file__))],
     cmdclass={"build_ext": CMakeBuild},
+    packages=find_packages(),
+    package_data={"curseforge": ["py.typed"]},
     zip_safe=False,
     python_requires=">=3.7",
 )
