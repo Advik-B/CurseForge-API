@@ -1,7 +1,0 @@
-[submodule "extern/pybind11"]
-	path = extern/pybind11
-	url = ../../pybind/pybind11
-	branch = stable
-[submodule "extern/curseforge"]
-	path = extern/curseforge
-	url = https://github.com/Advik-B/CurseForge-API-CPP.git
