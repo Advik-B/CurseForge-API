@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.4...3.18)
-project(PyCurseForge)
+project(PyCurseForge VERSION 2.0.0 LANGUAGES CXX)
 
 add_subdirectory(pybind11)
 pybind11_add_module(curseforge_bindings src/binder.cpp)
