@@ -1,32 +1,37 @@
 from setuptools import setup
+from skbuild import setup as sk_setup
 from glob import glob
 from pybind11.setup_helpers import Pybind11Extension
-from setuptools.command.build_ext import build_ext
 import subprocess
 
-class BuildExt(build_ext):
-    def build_extensions(self):
-        # Detect GCC version
-        gcc_version = subprocess.run(["g++", "--version"], capture_output=True, text=True)
-        if "GCC" in gcc_version.stdout:
-            version = int(gcc_version.stdout.split()[3].split(".")[0])
-            if version < 11:
-                for ext in self.extensions:
-                    ext.extra_compile_args = ["-std=c++2a"]
-            else:
-                for ext in self.extensions:
-                    ext.extra_compile_args = ["-std=c++20"]
-        super().build_extensions()
+
+# This class defines how CMake will be used to build the extension
+class CMakeExtension(Pybind11Extension):
+    def __init__(self, name, sources, **kwargs):
+        super().__init__(name, sources, **kwargs)
+
+    def finalize_options(self):
+        super().finalize_options()
+        # Specify CMake source and build directories
+        self.build_temp = self.build_temp or self._get_build_temp()
+        self.build_lib = self.build_lib or self._get_build_lib()
+
+    def _get_build_temp(self):
+        return "build/temp"
+
+    def _get_build_lib(self):
+        return "build/lib"
 
 ext_modules = [
-    Pybind11Extension(
+    CMakeExtension(
         "curseforge",
         sorted(glob("src/*.cpp")),  # Sort source files for reproducibility
-        cxx_std=17,
+        # cxx_std=17,
     ),
 ]
 
-setup(
+# Use scikit-build to invoke CMake
+sk_setup(
     name="curseforge",
     version="2.0.0",
     author="Advik",
