@@ -2,6 +2,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(curseforge_bindings, m) {
+
+PYBIND11_MODULE(curseforge, m) {
     m.def("add", [](int i, int j) { return i + j; });
 }

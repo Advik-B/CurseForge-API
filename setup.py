@@ -39,7 +39,7 @@ setup(
     author_email="advik.b@gmail.com",
     description="The python binding for the no-compromise CurseForge API wrapper.",
     long_description=long_description,
-    ext_modules=[CMakeExtension("curseforge_bindings", sourcedir='.')],
+    ext_modules=[CMakeExtension("curseforge_bindings", sourcedir=os.path.dirname(__file__))],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
     python_requires=">=3.7",
