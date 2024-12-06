@@ -11,3 +11,9 @@ def inspect(obj):
 
 
 inspect(curseforge)
+
+engine = curseforge.CurseForgeAPI("$2a$10$wY4AcSOcrrRN20zLIYhFaeWS8f9oE.XcxoRHxLH3pbL0Zib6NYyFG")
+
+x = engine.fetch("/v1/games/432", curseforge.json())
+
+print(x)

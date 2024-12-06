@@ -7,6 +7,8 @@
 #include <CurseCategory.hpp>
 #include <CurseErrors.hpp>
 
+// #include <cpr/cpr.h>
+
 const auto version = "2.0.0";
 
 namespace py = pybind11;
@@ -42,6 +44,8 @@ PYBIND11_MODULE(curseforge, m) {
         .def_static("parse", [](const std::string &s) { return json::parse(s); })
         .def("dump", &json::dump)
         .def_static("from_dict", [](const py::dict &d) { return d.cast<json>(); });
+
+    py::class_<
 
     py::class_<cf::CurseForgeAPI>(m, "CurseForgeAPI")
         .def(py::init<const std::string &>())
