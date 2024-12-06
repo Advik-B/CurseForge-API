@@ -28,8 +28,8 @@ ext_modules = [
 
 setup(
     name="curseforge",
-    version="2.1.0",
-    author="Your Name",
+    version="2.0.0",
+    author="Advik",
     description="Python bindings for the CurseForge API C++ library",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
