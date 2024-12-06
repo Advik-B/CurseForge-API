@@ -5,4 +5,3 @@
 [submodule "extern/curseforge"]
 	path = extern/curseforge
 	url = https://github.com/Advik-B/CurseForge-API-CPP.git
-	tag = v1.0.0
