@@ -1,5 +1,0 @@
-graft pybind11/include
-graft pybind11/tools
-graft src
-graft CurseForge-API-CPP
-global-include CMakeLists.txt *.cmake
