@@ -1,18 +1,18 @@
 {
-      "id": 0,
-      "gameId": 0,
-      "name": "string",
-      "slug": "string",
-      "url": "string",
-      "iconUrl": "string",
-      "dateModified": "2019-08-24T14:15:22Z",
-      "isClass": True,
-      "classId": 0,
-      "parentCategoryId": 0,
-      "displayIndex": 0
+  "id": 0,
+  "gameId": 0,
+  "name": "string",
+  "slug": "string",
+  "url": "string",
+  "iconUrl": "string",
+  "dateModified": "2019-08-24T14:15:22Z",
+  "isClass": True,
+  "classId": 0,
+  "parentCategoryId": 0,
+  "displayIndex": 0
 }
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 
 @dataclass
@@ -24,10 +24,10 @@ class CurseCategory:
     url: str
     iconUrl: str
     dateModified: datetime
-    isClass: bool
-    classId: int
-    parentCategoryId: int
-    displayIndex: int
+    isClass: bool = field(default=None)
+    classId: int = field(default=None)
+    parentCategoryId: int = field(default=None)
+    displayIndex: int = field(default=None)
 
 
     @staticmethod
@@ -40,10 +40,10 @@ class CurseCategory:
             url=data["url"],
             iconUrl=data["iconUrl"],
             dateModified=datetime.fromisoformat(data["dateModified"]),
-            isClass=data["isClass"],
-            classId=data["classId"],
-            parentCategoryId=data["parentCategoryId"],
-            displayIndex=data["displayIndex"]
+            isClass=data.get("isClass", None),
+            classId=data.get("classId", None),
+            parentCategoryId=data.get("parentCategoryId", None),
+            displayIndex=data.get("displayIndex", None)
         )
     
     @staticmethod
