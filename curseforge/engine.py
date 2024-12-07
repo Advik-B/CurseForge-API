@@ -15,7 +15,7 @@ class CurseForgeAPI:
     
     def fetch_raw(self, path: str):
         url = urljoin(self.base_url, path)
-        response = get(url, headers={"X-Api-Token": self.api_key})
+        response = get(url, headers={"x-api-key": self.api_key})
         try:
             return response.json()
         except JSONDecodeError as e:
