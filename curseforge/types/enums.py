@@ -46,3 +46,9 @@ class ModLoaderType(Enum):
     FABRIC = 4
     QUILT = 5
     NEOFORGE = 6
+
+class ModLoaderInstallMethod(Enum):
+    FORGE_INSTALLER = 1
+    FORGE_JAR_INSTALL = 2
+    FORGE_INSTALLER_V2 = 3
+
