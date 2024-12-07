@@ -27,7 +27,7 @@ class CurseGame:
         )
 
     @staticmethod
-    def list(api: CurseForgeAPI):
+    def s(api: CurseForgeAPI):
         return [CurseGame.from_dict(game) for game in api.fetch("/v1/games")]
 
     @staticmethod
