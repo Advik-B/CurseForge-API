@@ -1,5 +1,6 @@
 from ..engine import CurseForgeAPI
 from .assets import CurseAssets
+from .versions import CurseVersions
 from datetime import datetime
 from dataclasses import dataclass
 
@@ -33,3 +34,8 @@ class CurseGame:
     @staticmethod
     def from_id(game_id: int, api: CurseForgeAPI):
         return CurseGame.from_dict(api.fetch(f"/v1/games/{game_id}"))
+
+    
+    @staticmethod
+    def versions(game_id: int, api: CurseForgeAPI):
+        return CurseVersions.from_dict(api.fetch(f"/v1/games/{game_id}/versions"))
