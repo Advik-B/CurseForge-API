@@ -1,2 +1,2 @@
-from .assets import CurseAssets
+from .asset import CurseAssets
 from .game import CurseGame

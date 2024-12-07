@@ -1,6 +1,6 @@
 from ..engine import CurseForgeAPI
-from .assets import CurseAssets
-from .versions import CurseVersions
+from .asset import CurseAssets
+from .version import CurseVersions
 from datetime import datetime
 from dataclasses import dataclass
 
