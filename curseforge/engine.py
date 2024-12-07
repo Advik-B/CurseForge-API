@@ -17,7 +17,7 @@ class CurseForgeAPI:
         url = urljoin(self.base_url, path)
         response = get(url, headers={"x-api-key": self.api_key})
         try:
-            return response.json()
+            return response.json()["data"]
         except JSONDecodeError as e:
             raise CurseResponseIsNotJSON from e
         except RequestException as e:
