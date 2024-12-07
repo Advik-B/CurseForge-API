@@ -1,10 +1,10 @@
 from enum import Enum
 
-class CurseCurseCoreApiStatus(Enum):
+class CoreApiStatus(Enum):
     PRIVATE = 1
     PUBLIC = 2
 
-class CurseCoreStatus(Enum):
+class CoreStatus(Enum):
     DRAFT = 1
     TEST = 2
     PENDING_REVIEW = 3
