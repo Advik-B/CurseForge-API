@@ -8,7 +8,7 @@ class CurseModAuthor:
 
     @staticmethod
     def from_dict(d: dict):
-        return ModAuthor(
+        return CurseModAuthor(
             id=d.get('id'),
             name=d.get('name'),
             url=d.get('url')
