@@ -1,5 +1,5 @@
 from ..engine import CurseForgeAPI
-from .assets import CurseAsset
+from .assets import CurseAssets
 from datetime import datetime
 from dataclasses import dataclass
 
@@ -9,7 +9,7 @@ class CurseGame:
     name: str
     slug: str
     dateModified: datetime
-    assets: CurseAsset
+    assets: CurseAssets
     status: int
     apiStatus: int
 
@@ -21,7 +21,7 @@ class CurseGame:
             name=data["name"],
             slug=data["slug"],
             dateModified=datetime.fromisoformat(data["dateModified"]),
-            assets=CurseAsset.from_dict(data["assets"]),
+            assets=CurseAssets.from_dict(data["assets"]),
             status=data["status"],
             apiStatus=data["apiStatus"]
         )
