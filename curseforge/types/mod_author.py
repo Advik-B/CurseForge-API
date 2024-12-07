@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class ModAuthor:
+class CurseModAuthor:
     id: int
     name: str
     url: str

@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
 @dataclass
-class ModLinks:
+class CurseModLinks:
     websiteUrl: str = field(default=None)
     wikiUrl: str = field(default=None)
     issuesUrl: str = field(default=None)
