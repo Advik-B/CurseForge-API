@@ -41,13 +41,13 @@ pip install curseforge
 ### Basic Usage
 
 ```python
-from curseforge import CurseClient
+from curseforge import CurseClient, Games
 
 # Initialize the client with your API key
 client = CurseClient("YOUR-API-KEY", cache=True)
 
-# Get information about Minecraft
-minecraft = client.game(432)  # 432 is the ID of Minecraft
+# Get information about Minecraft using the constant
+minecraft = client.game(Games.MINECRAFT)  # Much cleaner than using 432
 print(f"Game: {minecraft.name}")
 
 # Get a specific mod (JourneyMap example)
@@ -66,11 +66,13 @@ for file in client.get_mod_files(32274):
 ### Searching for Mods
 
 ```python
-# Search for mods in Minecraft
+from curseforge import Games, SORT_FIELDS
+
+# Search for mods in Minecraft using constants
 search_results = client.search_mods(
-    game_id=432,  # Minecraft
+    game_id=Games.MINECRAFT,  # Much cleaner than using 432
     search_filter="journeymap",
-    sort_field=6,  # Sort by total downloads
+    sort_field=SORT_FIELDS.TOTAL_DOWNLOADS,  # Much cleaner than using 6
     page_size=10
 )
 
@@ -81,15 +83,50 @@ for mod in search_results:
 ### Working with Games and Categories
 
 ```python
+from curseforge import Games
+
 # List all available games
 games = client.games()
 for game in games:
     print(f"Game: {game.name} (ID: {game.id})")
 
-# Get categories for Minecraft
-categories = client.categories(432)  # Minecraft ID
+# Get categories for Minecraft using the constant
+categories = client.categories(Games.MINECRAFT)  # Much cleaner than using 432
 for category in categories:
     print(f"Category: {category.name}")
+```
+
+### Using Constants for Better Code Readability
+
+The wrapper provides helpful constants to make your code more readable and maintainable:
+
+```python
+from curseforge import CurseClient, Games, SORT_FIELDS, SORT_ORDER
+
+client = CurseClient("YOUR-API-KEY")
+
+# Use game constants instead of magic numbers
+minecraft_mods = client.search_mods(
+    game_id=Games.MINECRAFT,           # Instead of 432
+    search_filter="optimization",
+    sort_field=SORT_FIELDS.POPULARITY, # Instead of 2
+    sort_order=SORT_ORDER.DESC         # Instead of "desc"
+)
+
+# Available game constants
+print("Available games:")
+print(f"Minecraft: {Games.MINECRAFT}")
+print(f"World of Warcraft: {Games.WORLD_OF_WARCRAFT}") 
+print(f"Kerbal Space Program: {Games.KERBAL_SPACE_PROGRAM}")
+# ... and more
+
+# Available sort field constants  
+print("Sort fields:")
+print(f"Featured: {SORT_FIELDS.FEATURED}")
+print(f"Popularity: {SORT_FIELDS.POPULARITY}")
+print(f"Last Updated: {SORT_FIELDS.LAST_UPDATED}")
+print(f"Total Downloads: {SORT_FIELDS.TOTAL_DOWNLOADS}")
+# ... and more
 ```
 
 ### Manifest Parsing

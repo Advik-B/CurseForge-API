@@ -13,7 +13,7 @@ To run this example:
 
 import os
 import sys
-from curseforge import CurseClient
+from curseforge import CurseClient, Games, SORT_FIELDS
 
 
 def main():
@@ -33,7 +33,7 @@ def main():
         
         # Example 1: Get game information
         print("1. Getting Minecraft game info...")
-        minecraft = client.game(432)  # 432 is Minecraft's ID
+        minecraft = client.game(Games.MINECRAFT)  # Using the constant instead of 432
         print(f"   Game: {minecraft.name} (ID: {minecraft.id})")
         print(f"   Slug: {minecraft.slug}")
         print(f"   Status: {minecraft.status}\n")
@@ -41,8 +41,9 @@ def main():
         # Example 2: Search for mods
         print("2. Searching for JourneyMap...")
         search_results = list(client.search_mods(
-            game_id=432,  # Minecraft
+            game_id=Games.MINECRAFT,  # Using the constant instead of 432
             search_filter="journeymap",
+            sort_field=SORT_FIELDS.TOTAL_DOWNLOADS,  # Sort by total downloads
             page_size=5
         ))
         
@@ -69,7 +70,7 @@ def main():
         
         # Example 4: List game categories
         print("4. Getting Minecraft categories...")
-        categories = list(client.categories(432))
+        categories = list(client.categories(Games.MINECRAFT))  # Using the constant
         for category in categories[:5]:  # Show first 5 categories
             print(f"   Category: {category.name}")
         print()
