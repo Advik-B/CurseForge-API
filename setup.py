@@ -9,6 +9,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 with codecs.open(os.path.join(here, "requirements.txt"), encoding="utf-8") as fh:
     requirements = fh.read().splitlines()
+
 VERSION = '1.6.0'
 DESCRIPTION = "A no-compromises wrapper for the CurseForge API"
 
@@ -23,12 +24,32 @@ setup(
     long_description=long_description,
     packages=find_packages(),
     install_requires=requirements,
-    keywords=["CMPDL", "Minecraft", "Curseforge", "API", "Wrapper"],
+    keywords=["CMPDL", "Minecraft", "Curseforge", "API", "Wrapper", "Modding", "Mods"],
     classifiers=[
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7", 
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Topic :: Games/Entertainment",
+        "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    url="https://github.com/Advik-B/curseforge-api",
+    url="https://github.com/Advik-B/CurseForge-API",
+    project_urls={
+        "Bug Reports": "https://github.com/Advik-B/CurseForge-API/issues",
+        "Source": "https://github.com/Advik-B/CurseForge-API",
+        "Documentation": "https://github.com/Advik-B/CurseForge-API#readme",
+    },
+    python_requires=">=3.6",
+    entry_points={
+        "console_scripts": [
+            "curseforge=curseforge.__main__:main",
+        ],
+    },
 )
