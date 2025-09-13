@@ -79,6 +79,17 @@ class CurseFileIndex(CurseObject):
     game_version_type_id: int
     mod_loader: int
 
+    @staticmethod
+    def from_dict(data: dict):
+        return CurseFileIndex(
+            game_version=data.get("gameVersion", ""),
+            file_id=data.get("fileId", 0),
+            file_name=data.get("filename", ""),
+            release_type=data.get("releaseType", 0),
+            game_version_type_id=data.get("gameVersionTypeId", 0),
+            mod_loader=data.get("modLoader", 0)
+        )
+
 
 @dataclass
 class CurseModFile(CurseObject):
@@ -168,6 +179,54 @@ class CurseMod(CurseObject):
         """
         Returns a CurseMod instance from a dict
         """
-
-        return
+        return CurseMod(
+            id=data.get("id"),
+            game_id=data.get("gameId"),
+            name=data.get("name"),
+            slug=data.get("slug"),
+            links=CurseModLinks(
+                website_url=data.get("links", {}).get("websiteUrl", ""),
+                wiki_url=data.get("links", {}).get("wikiUrl", ""),
+                issue_tracker_url=data.get("links", {}).get("issuesUrl", ""),
+                source_code_url=data.get("links", {}).get("sourceUrl", "")
+            ) if data.get("links") else CurseModLinks("", "", "", ""),
+            summary=data.get("summary", ""),
+            status=data.get("status"),
+            download_count=data.get("downloadCount"),
+            is_featured=data.get("isFeatured"),
+            primary_category_id=data.get("primaryCategoryId"),
+            categories=tuple(CurseCategory.from_dict(cat) for cat in data.get("categories", [])),
+            class_id=data.get("classId"),
+            authors=tuple(CurseModAuthor(
+                id=author.get("id"),
+                name=author.get("name"),
+                url=author.get("url")
+            ) for author in data.get("authors", [])),
+            logo=CurseModLogo(
+                id=data.get("logo", {}).get("id", 0),
+                modId=data.get("logo", {}).get("modId", 0),
+                title=data.get("logo", {}).get("title", ""),
+                description=data.get("logo", {}).get("description", ""),
+                thumbnail_url=data.get("logo", {}).get("thumbnailUrl", ""),
+                url=data.get("logo", {}).get("url", "")
+            ) if data.get("logo") else CurseModLogo(0, 0, "", "", "", ""),
+            screenshots=tuple(CurseScreenShot(
+                id=screenshot.get("id", 0),
+                modId=screenshot.get("modId", 0),
+                title=screenshot.get("title", ""),
+                description=screenshot.get("description", ""),
+                thumbnail_url=screenshot.get("thumbnailUrl", ""),
+                url=screenshot.get("url", "")
+            ) for screenshot in data.get("screenshots", [])),
+            mainFile_id=data.get("mainFileId"),
+            latestFiles=tuple(CurseModFile.from_dict(file) for file in data.get("latestFiles", [])),
+            latestFilesIndexes=tuple(CurseFileIndex.from_dict(index) for index in data.get("latestFilesIndexes", [])),
+            data_created=data.get("dateCreated", ""),
+            data_modified=data.get("dateModified", ""),
+            data_released=data.get("dateReleased", ""),
+            allow_mod_distribution=data.get("allowModDistribution"),
+            game_popularity_rank=data.get("gamePopularityRank"),
+            is_available=data.get("isAvailable"),
+            thumbs_up_count=data.get("thumbsUpCount")
+        )
 
