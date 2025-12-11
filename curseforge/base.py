@@ -14,7 +14,7 @@ from warnings import simplefilter
 
 from diskcache import Cache
 
-BASE_URL = "http://api.curseforge.com"
+BASE_URL = "https://api.curseforge.com"
 MOD_BASE_URL = "https://edge.forgecdn.net/files/%(file_id_1)s/%(file_id_2)s/%(file_name)s"
 
 
@@ -102,14 +102,18 @@ class CurseClient:
             yield CurseCategory.from_dict(category)
 
     def addon(self, addon_id: int) -> CurseMod:
-        return CurseMod.from_dict(self.fetch(f"addon/{addon_id}"))
+        return CurseMod.from_dict(self.fetch(f"mods/{addon_id}"))
+
+    def mod(self, mod_id: int) -> CurseMod:
+        """Alias for addon method for consistency"""
+        return self.addon(mod_id)
 
     def clean_cache(self):
         if self.cache:
             self.cache_obj.clear()
 
-    def get_mod_files(self, addon_id: int):
-        for file in self.fetch(f"addon/{addon_id}/files"):
+    def get_mod_files(self, mod_id: int):
+        for file in self.fetch(f"mods/{mod_id}/files"):
             yield CurseModFile.from_dict(file)
 
     def get_mod_file(self, addon_id: int, file_id: int,
@@ -131,6 +135,40 @@ class CurseClient:
     def close_cache(self):
         if self.cache:
             self.cache_obj.close()
+
+    def search_mods(self, game_id: int, search_filter: str = "", 
+                   class_id: int = None, category_id: int = None,
+                   sort_field: int = 1, sort_order: str = "desc",
+                   page_index: int = 0, page_size: int = 20) -> Generator[CurseMod, CurseMod, ...]:
+        """
+        Search for mods using the CurseForge API
+        :param game_id: Game ID to search within
+        :param search_filter: Search term
+        :param class_id: Class ID filter
+        :param category_id: Category ID filter  
+        :param sort_field: Sort field (1=Featured, 2=Popularity, 3=LastUpdated, 4=Name, 5=Author, 6=TotalDownloads, 7=Category, 8=GameVersion)
+        :param sort_order: Sort order (asc/desc)
+        :param page_index: Page index for pagination
+        :param page_size: Page size for pagination
+        :return: Generator of CurseMod objects
+        """
+        params = {
+            "gameId": game_id,
+            "searchFilter": search_filter,
+            "sortField": sort_field,
+            "sortOrder": sort_order,
+            "index": page_index,
+            "pageSize": page_size
+        }
+        
+        if class_id is not None:
+            params["classId"] = class_id
+        if category_id is not None:
+            params["categoryId"] = category_id
+            
+        response = self.fetch("mods/search", params)
+        for mod_data in response:
+            yield CurseMod.from_dict(mod_data)
 
     def manifest_to_modfile(self, manifest: CurseModFileManifest) -> CurseModFile:
         """

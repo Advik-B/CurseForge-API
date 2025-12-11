@@ -19,11 +19,16 @@ class CurseGame(CurseObject):
 
     @staticmethod
     def from_dict(data: dict):
+        assets_data = data.get("assets", {})
         return CurseGame(
             id=data.get("id"),
             name=data.get("name"),
             slug=data.get("slug"),
-            assets=CurseGameAssets(*data.get("assets").values()),
+            assets=CurseGameAssets(
+                icon_url=assets_data.get("iconUrl", ""),
+                tile_url=assets_data.get("tileUrl", ""),
+                cover_url=assets_data.get("coverUrl", "")
+            ),
             status=data.get("status"),
             api_status=data.get("apiStatus"),
             date_modified=data.get("dateModified"),
